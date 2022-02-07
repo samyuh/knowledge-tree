@@ -11,3 +11,7 @@ Recomendo o uso de [Obsidian](https://obsidian.md/) para a leitura das notas.
 - FSI
 - SDLE (incompleto)
 - AC (incompleto)
+
+## Conceitos
+Conceitos abordados em várias cadeiras. Em desenvolvimento...
+
