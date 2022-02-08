@@ -74,3 +74,6 @@ Some advanced topics.
 Artificial Neural Networks: types, activation functions, backpropagation algorithm, main hyperparameters. 
 Introduction to Deep Learning: Convolutional Neural Networks.
 
+**Aula nº 12 de 20-01-2022**
+[[3.5. Ensemble Learning]]
+[[4.3. Metalearning & AutoML]]
