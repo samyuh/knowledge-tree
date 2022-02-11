@@ -1,3 +1,7 @@
+---
+title: "Aprendizagem Computacional"
+---
+
 ### Index
 1. ML & DM Projects
 2. Descriptive Data Mining

@@ -1,3 +1,7 @@
+---
+title: "Perguntas"
+---
+
 # Segurança Web: Modelo
 1. O que é o SOP? Quais são as limitações que este impõe para HTTP, HTML e Javascript?
 	- Resposta: SOP (Same Origin Policy) é uma política de proteção. Sempre podemos escrever pedidos HTTP. O conteúdo escrito na resposta não pode ser visualizado programaticamente, no entanto pode ser processado. Para o HTML e Javascript temos a mesma coisa: podemos ler e executar o conteúdo, mas não podemos analisá-lo programaticamente.
