@@ -1,0 +1,10 @@
+name: Knowledge Tree
+enableToc: true
+enableLinkPreview: true
+description:
+  Knowledge Tree for Computer Science Students
+page_title:
+  "🪴 Knowledge Tree"
+links:
+  - link_name: Samuh
+    link: https://github.com/Samuuuh
