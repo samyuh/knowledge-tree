@@ -8,9 +8,9 @@ If you prefer browsing the contents of this site through a list instead of a gra
 
 ## Cadeiras
 ### 4º Ano - 1º Semestre
-- [FSI](/notes/cadeiras/fsi)
-- [SDLE (incompleto)](/notes/cadeiras/sdle)
-- [AC (incompleto)](/notes/cadeiras/ac)
+- [[Fundamentos de Segurança Informática]]
+- SDLE (incompleto)
+- [[Aprendizagem Computacional]]
 
 ## Conceitos
 Conceitos abordados em várias cadeiras. Em desenvolvimento...
