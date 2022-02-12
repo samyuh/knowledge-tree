@@ -6,8 +6,8 @@ tags: "#uc"
 ---
 
 ## Divisão da Cadeira
-#### Part 0 - INTRO
-[[1. Large Scale Distributed Systems - Intro]]
+#### Part 0 - Intro
+[[1. Large Scale Distributed Systems]]
 
 #### Part 1 - Communication and Processing for Large Scale
 [[2. Message Oriented Middleware]]
