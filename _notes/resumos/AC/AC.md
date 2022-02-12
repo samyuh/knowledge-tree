@@ -1,5 +1,8 @@
 ---
 title: "Aprendizagem Computacional"
+description: "Resumos da cadeira"
+aliases: "AC"
+tags: "#uc"
 ---
 
 ### Index

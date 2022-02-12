@@ -1,5 +1,8 @@
 ---
 title: "Sistemas Distribuídos em Larga Escala"
+description: "Resumos da cadeira"
+aliases: "AC"
+tags: "#uc"
 ---
 
 ## Divisão da Cadeira

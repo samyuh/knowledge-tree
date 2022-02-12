@@ -1,5 +1,8 @@
 ---
 title: "Fundamentos de Segurança Informática"
+description: "Resumos da cadeira"
+aliases: "AC"
+tags: "#uc"
 ---
 
 # Fundamentos de Segurança Informática

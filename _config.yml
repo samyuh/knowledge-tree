@@ -29,7 +29,7 @@ baseurl: /knowledge-tree
 # Build settings
 plugins:
   - jekyll-last-modified-at
-  
+
 sass:
   style: compact
 
