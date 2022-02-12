@@ -28,8 +28,8 @@ baseurl: /knowledge-tree
 
 # Build settings
 plugins:
-  - jekyll-feed
-
+  - jekyll-last-modified-at
+  
 sass:
   style: compact
 
