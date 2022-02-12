@@ -1,7 +1,6 @@
-.DS_Store
-public
-resources
-.idea
-content/.obsidian
-data/linkIndex.yaml
-data/contentIndex.yaml
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+_notes/.obsidian
