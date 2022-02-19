@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+
+  <link rel="icon" href="" type="image/png" sizes="16x16"/>
+  <link rel="canonical" href="samuuuh.github.io/resumos/FSI/2.%20Criptografia/2-criptografia" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CriptografiaA criptografia é uma ciência (área multidisciplinar, princípios rigorosos), possui normas internacionais estabelicidades e públicas, possuindo um...">
+  <meta property="og:site_name" content="Knowledge Tree">
+
+  <link rel="stylesheet" href="/knowledge-tree/assets/css/main.css">
+
+  
+  <meta property="og:description" content="CriptografiaA criptografia é uma ciência (área multidisciplinar, princípios rigorosos), possui normas internacionais estabelicidades e públicas, possuindo um..."/>
+  
+
+  
+  <meta property="og:title" content="Criptografia">
+  <meta property="og:type" content="article">
+  
+
+  
+  <meta property="article:published_time" content="2022-02-19T13:44:00+00:00">
+  <meta property="article:author" content="samuuuh.github.io/">
+  
+
+  <meta property="og:url" content="samuuuh.github.io/resumos/FSI/2.%20Criptografia/2-criptografia" />
+
+  
+
+  <title>
+    
+      Criptografia &mdash; Knowledge Tree
+    
+  </title>
+</head>
+
+  
+  <body>
+    <nav>
+    <div>
+        <a class="header-title" href="/knowledge-tree/"><b>Knowledge Tree</b></a>
+        <a class="header-link" href="/knowledge-tree/about">About</a>
+        <a class="header-link" href="https://github.com/Samuuuh/knowledge-tree">Github</a>
+    </div>
+</nav>
+
+
+    <main class="main-content">
+      <article>
+  <div>
+    <h1>Criptografia</h1>
+    <time datetime="2022-02-19T13:43:06+00:00">
+      Last updated on February 19, 2022
+      
+    </time>
+  </div>
+
+  <div id="notes-entry-container">
+    <content>
+      <h1 id="criptografia">Criptografia</h1>
+<p>A criptografia é uma <strong>ciência</strong> (área multidisciplinar, princípios rigorosos), possui normas internacionais estabelicidades e públicas, possuindo uma utilização generalizada (todas as aplicações que usamos hoje em dia).</p>
+
+<ul>
+  <li>Proteger informação assíncrona (e.g email)</li>
+  <li>Proteger informação offline (e.g encriptografia de informação no disco)</li>
+</ul>
+
+<h4 id="princípios">Princípios</h4>
+<ul>
+  <li><strong>Confidencialidade</strong>: restringir quem tem conhecimento da informação (e.g cifras simétricas, assimétricas, acordos de chaves).</li>
+  <li><strong>Autenticidade (e integridade)</strong>: entre o emissor A e um receptor B temos a certeza que os dados vieram de A (sem alteração).</li>
+  <li><strong>Não repúdio</strong>: assinaturas. Quando envia uma mensagem autenticada, não posso mais negar o envio da mensagem.</li>
+</ul>
+
+<h4 id="criptografia-moderna">Criptografia Moderna</h4>
+<ol>
+  <li>Definições <strong>precisas</strong> e <strong>rigorosas</strong> de segurança (modelos matemáticos da realidade)</li>
+  <li>Quando a segurança de uma construção criptográfica se baseia num prerssuposto que não conseguimos provar:
+    <ul>
+      <li>Esse pressuposto deve ser <strong>simples</strong> e descrito de forma precisa</li>
+      <li>Utilizam-se poucos destes pressupostos</li>
+      <li>São escrutinados por toda a comunidade</li>
+    </ul>
+  </li>
+  <li>As construções criptgráficas devem ser <strong>justificadas formalmente</strong>:
+    <ul>
+      <li>Prova de que satisfaz definição de acordo com o princípio #1</li>
+      <li>Possivelmente, assumindo pressupostos enunciados de acordo com o princípio #2</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="confidencialidade">Confidencialidade</h4>
+<p>Um princípio fundamental da criptografia são as funções <strong>oneway</strong>.</p>
+
+<p>Temos os problemas <strong>P</strong> que são aqueles que conseguimos achar as soluções em tempo polinomial e há os problemas do tipo <strong>NP</strong>, que são aqueles que conseguimos <strong>verificar</strong> uma solução em tempo polinomial. O ponto é que criptografia usa estes problemas <strong>NP</strong> para garantir segurança.</p>
+
+<p>O facto é que criptografias precisam ser descritas, formalmente bom base em modelos matemáticos.
+E a construção deve ser justificada formalmente.</p>
+
+<h1 id="cifras-simétricas">Cifras Simétricas</h1>
+<pre><code class="language-ad-danger">title: Problema
+Cifras garantem que a mensagem não foi lida, mas isto não implica que a mensagem não foi alterada.
+</code></pre>
+
+<h4 id="definição">Definição</h4>
+<p><strong>Cifra:</strong> uma primitiva que dá <code class="language-plaintext highlighter-rouge">confidencialidade</code>. Ou seja, restringimos o acesso ao conhecimento.
+<strong>Simétrica:</strong> usamos a mesma chave dos dois lados da comunicação.</p>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  encrypt.png  <span class="invalid-link-brackets">]]</span></span></p>
+
+<h4 id="componentes">Componentes</h4>
+<ul>
+  <li><strong>k</strong> - chave que deve ser igual para os dois lados (128 bits)</li>
+  <li><strong>m</strong> - a mensagem a ser transmitida</li>
+  <li><strong>n</strong> - nonce (not more than once), é um parâmetro público adicional que pode ser modificado.</li>
+  <li><strong>c</strong> - criptograma (output)</li>
+</ul>
+
+<p>Do outros lado da comunicação temos um algoritmos que pode inverter a mensagem. Temos de então fornencer o <strong>nonce</strong> e a <strong>chave.</strong></p>
+
+<blockquote>
+  <p><strong>Porquê utilizamos chaves de 128bits.</strong> Atualmente estimasse que o nosso poder computacional gira em torno de 2^80 (80 bits). Então não conseguimos encontrar por brute force chaves de 128 bits. (<a href="https://crypto.stackexchange.com/questions/13299/is-80-bits-of-key-size-considered-safe-against-brute-force-attacks"></a><a href="https://crypto.stackexchange.com/questions/13299/is-80-bits-of-key-size-considered-safe-against-brute-force-attacks">https://crypto.stackexchange.com/questions/13299/is-80-bits-of-key-size-considered-safe-against-brute-force-attacks</a>)</p>
+</blockquote>
+
+<h4 id="casos-de-uso">Casos de uso</h4>
+<ul>
+  <li><strong>Chave é usada apenas uma vez (one-time-key)</strong> e toda vez que envíamos uma mensagem, ela é gerada novamente. Um caso destes é o <strong>email.</strong> Por isso, neste caso o nonce não é relevante: pode ser descartado. <em>**</em></li>
+  <li><strong>Chave é usada muitas vezes (many-time-key).</strong> Ela é usada muitas vezes, por exemplo, em comunicações HTTPS/TLS. Neste caso o nonce não pode se repetir.</li>
+</ul>
+
+<h3 id="one-time-pad">One-Time Pad</h3>
+<p>Fazemos um <strong>xor</strong> entre a mensagem e a key.</p>
+
+<blockquote>
+  <p>Foi provado que o One-Time Pad não revela nenhuma informação sobre o conteúdo da mensagem, considerando que não temos um man in the middle.</p>
+</blockquote>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  one-time-pad.png  <span class="invalid-link-brackets">]]</span></span></p>
+
+<h4 id="segurança">Segurança</h4>
+
+<p>Primeiro resultado formal para uma garantia de segurança (Sh49):</p>
+<ul>
+  <li>OTP garante <strong>confidencialidade</strong> contra “eavesdroppers”</li>
+  <li>Formalmente: distribuição do criptograma totalmente aleatória</li>
+</ul>
+
+<h4 id="problemas">Problemas</h4>
+<ul>
+  <li>A chave só pode ser utilizada uma vez.</li>
+  <li>A chave tem de ser do tamanho do texto lido, portanto, se estivermos a encriptografar ficheiros grandes (e.g 1GB, 1TB), a chave será enorme.</li>
+</ul>
+
+<p>Portanto, gerar chaves diferentes para textos grandes muitas vezes não é factível.</p>
+
+<h3 id="cifras-sequenciais">Cifras Sequenciais</h3>
+<h4 id="resolvem-o-problema-de-keys-muito-grandes">Resolvem o problema de keys muito grandes</h4>
+<p>Precisamos consertar o problema de chaves do tamanho do text para o caso do <code class="language-plaintext highlighter-rouge">one-time pad</code>.
+Podemos ter aqui uma chave <strong>k</strong> com 128 bits. Então usamos um <strong>gerador pseudo-aleatório (PRG)</strong> para gerar uma string aleatória que possa cifrar a nossa mensagem.</p>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  prg-generator.png  <span class="invalid-link-brackets">]]</span></span></p>
+
+<h4 id="resolver-o-problema-de-keys-repetidas">Resolver o problema de keys repetidas</h4>
+<p>Se eu usar a mesma <strong>key</strong> o output do <strong>PRG(k)</strong> será igual para todas as mensagens. Isto é inseguro porque ao fazer XOR dos dois criptogramas equivale a fazer XOR das duas mensagens, o que pode levar à sua desencriptação:
+\(\begin{align}
+c_1 = m_1 \oplus PRG(k) \\ 
+c_2= m_2 \oplus PRG(k) \\ \\
+c_1 \oplus c_2 = m_1 \oplus m_2 
+\end{align}\)</p>
+
+<p>Os <code class="language-plaintext highlighter-rouge">PRGs</code> modernos nos permitem usar <code class="language-plaintext highlighter-rouge">nounce</code> públicos.</p>
+
+<h3 id="cifras-de-bloco-prg">Cifras de Bloco (PRG)</h3>
+<p>Não são cifras! Apenas permitem contruí-las. Esta é função mais popular de PRG.</p>
+
+<pre><code class="language-ad-note">title:Nunca foir provado, mas acredita-se
+
+Para um **k** aleatório e secreto E(k, B) permanece aleatório, onde B é um bloco de 64 bits, mesmo sendo escolhido B
+</code></pre>
+<p>Se nos derem dois outputs de E (um encriptografando a nossa mensagem e outro não), não conseguimos dizer qual deles refere-se a nossa mensagem.</p>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  key-expansion.png  <span class="invalid-link-brackets">]]</span></span></p>
+<h3 id="cifras-de-bloco-aes">Cifras de Bloco: AES</h3>
+<h4 id="descrição">Descrição</h4>
+<ul>
+  <li>Cifra de bloco simétrica</li>
+</ul>
+
+<h4 id="modelo-de-funcionamento">Modelo de Funcionamento</h4>
+<ul>
+  <li>Estado = matrix 4x4 bytes</li>
+  <li>Um round = 4 transformações:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">AddRoundKey</code>, <code class="language-plaintext highlighter-rouge">MixColumn</code>, <code class="language-plaintext highlighter-rouge">ShiftRow</code>,<code class="language-plaintext highlighter-rouge">ByteSub</code></li>
+    </ul>
+  </li>
+  <li>Cada round usa uma chave derivada da chave da cifra =&gt; <strong>key schedule</strong></li>
+</ul>
+
+<h5 id="cifra-insegura">Cifra insegura</h5>
+<p><strong>Eletronic Code Book</strong> é insegura porque para blocos iguais vai aplicar a mesma cifra.
+Blocos de ficheiro iguais vão ter criptogramas iguas</p>
+
+<h5 id="cifra-segura">Cifra segura</h5>
+<ul>
+  <li>Ciphre Block Chaining Mode: É feito em série.</li>
+  <li>Counter Mode (segura, mais usado): Não faz sequencialmente, faz paralelamente. No entanto, invés de cifrar o plaintext cifra uma nonce gerada aleatoriamente e dá XOR com o plaintext. Utiliza counter para distinguir as nonces</li>
+</ul>
+
+<h4 id="outras-cifras-simétricas">Outras Cifras Simétricas</h4>
+<ul>
+  <li>ChaCha20: Sequencial com nonce, eficiente em software</li>
+</ul>
+
+<h1 id="autencicidade">Autencicidade</h1>
+<h2 id="message-authentication-code-mac">Message Authentication Code (MAC)</h2>
+<p>The MAC authentication assures authenticity and integrity, because assures that a message from a A is being sent to B.
+But it doesn’t assure confidentiality, since we are not encrypting the messages.</p>
+
+<h3 id="protocol">Protocol</h3>
+<p>The computer A generates the message M and generates a tag from the message and a key</p>
+<pre><code class="language-ad-info">title: Tag generation 
+t = MAC(key, message)
+</code></pre>
+
+<p>We are assuming that both computers owns the key.
+Later, the machine B will receive the message, but it will generate <code class="language-plaintext highlighter-rouge">t'</code> from a key that he owns and the received message.</p>
+<pre><code class="language-ad-info">title: Check Tag
+
+t' = MAC(key, message) 
+if (t' != t) return 1; 
+return 0; 
+</code></pre>
+
+<h3 id="problemas-1">Problemas</h3>
+<p>Apesar da mensagem não seja alterada, o atacante pode:</p>
+<ul>
+  <li>Intercetar a mensagem, fazendo com que não chegue ao receter</li>
+  <li>Enviar várias vezes a mesma mensagem</li>
+</ul>
+
+<h3 id="garantias">Garantias</h3>
+<p>Usar um número de sequência para garantir que não existem mensagens perdidas e que não existam mensagens duplicadas</p>
+
+<h3 id="cookie-poisoning">Cookie poisoning</h3>
+
+<blockquote>
+  <p>“Attackers can intercept cookies before they return to the server to extract information from or modify them. Forged cookies can also be created from scratch as a means of impersonating a user to access additional user data. Cookie poisoning is thus a misnomer in that it is often used to refer not only to modified (“poisoned”) cookies but to a variety of methods for stealing data from valid cookies or other malicious use of them”
+ <a href="https://www.f5.com/services/resources/glossary/cookie-poisoning">What Is Cookie Poisoning?</a></p>
+</blockquote>
+
+<p>Imagine que temos o cenário de um jogo em que o score é guardado no lado do cliente como uma cookie + tag do protocolo MAC. <strong>O MAC evita com que a pessoa possa alterar a mensagem sem alterar o MAC.</strong> Se a tag do MAC não existisse o jogador poderia simplesmente alterar a cookie e quando o servidor requisitasse este, lia o valor introduzido pelo atacante.</p>
+
+<p>Ainda, precisamos ter um número de sequência, pelo que pode-se enviar a mesma cookie repetidas vezes para o servidor.</p>
+
+<h3 id="construções-mac">Construções MAC</h3>
+<h4 id="hmac">HMAC</h4>
+<p><code class="language-plaintext highlighter-rouge">t = H(okey || H(ikey || m))</code></p>
+
+<h4 id="poly1305">Poly1305</h4>
+<p><code class="language-plaintext highlighter-rouge">t = f(m, r) + s</code></p>
+<ul>
+  <li>Função de hash algébrica
+    <ul>
+      <li>polinómio definido por <code class="language-plaintext highlighter-rouge">m</code>, avaliado no ponto <code class="language-plaintext highlighter-rouge">r</code></li>
+    </ul>
+  </li>
+  <li>Chave secreta (r,s) =&gt; 256 bits</li>
+  <li>Pode ser usada apenas uma vez</li>
+  <li>One-time MAC</li>
+</ul>
+
+<h2 id="authenticity-in-protocols">Authenticity in Protocols</h2>
+<p>Para obter ambas é necessário utilizar Cifras e MAC.</p>
+
+<h4 id="ssh">SSH</h4>
+<p>The SSH is a type of encryption that uses both ciphers and MAC.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m = ENC(Message, key1) 
+t = MAC(Message, key2) 
+Send [ m | t] 
+</code></pre></div></div>
+
+<h4 id="ssl">SSL</h4>
+<p>We can have here malicious code while the program checks if the tag is valid.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>t = MAC(Message, key2) 
+mt = ENC([Message | t], key1) 
+Send mt
+</code></pre></div></div>
+
+<h4 id="ipsec">IPSEC</h4>
+<p>Usa Encrypt Then Mac
+Funciona sempre desde que componentes sejam seguros independentemente.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c = ENC(Message, key1) 
+t = MAC(c, key2) 
+Sent [c | t] 
+</code></pre></div></div>
+
+<h3 id="aead">AEAD</h3>
+<p>(Authentication Encryption with Associated Data).
+Usually, we don’t talk about ciphers and MAC separately.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enc(n,k,m,data) -&gt; (c,t) [nounce, key, message and the metadata] 
+Dec(n,k,c,t) -&gt;  m, only if (c,data) are authentic. 
+</code></pre></div></div>
+
+<h4 id="aes-gcm-aes-em-galois-counter-mode">AES-GCM (AES em Galois-Counter-Mode)</h4>
+<p>Muito utilizado em <strong>AES-GCM (AES em Galois-Counter-Mode).</strong> É muito eficiente devido ao suporte em HW.</p>
+
+<h4 id="aead-chacha20-poly1305">AEAD: ChaCha20-poly1305</h4>
+<ul>
+  <li>Alternativa a AES GCM recomendado no TLS 1.3</li>
+  <li>Vontajosa em implementações SW</li>
+  <li>Encrypt-Then-Mac, mas:
+    <ul>
+      <li>chave do MAC/Poly1305 =&gt; início da key stream ChaCha20</li>
+      <li>MAC/Poly1305 calculado sobre metadados + criptograma</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="aleatoriedade">Aleatoriedade</h2>
+<p>Na análise teórica de cripto geralmente assume-se aleatoriedade perfeita</p>
+<ul>
+  <li>sequências de bits
+• cada bit é independente de todos os outros
+• a probabilidade de ser 1/0 é exatamente 50%</li>
+</ul>
+
+<p>Na prática gerar aleatoriedade é difícil</p>
+
+<h2 id="heurísticas">Heurísticas</h2>
+<h4 id="fontes-de-entropia---aleatório">Fontes de Entropia - Aleatório</h4>
+<ul>
+  <li>Temperatura do Sistema</li>
+  <li>Atividade do Processador</li>
+  <li>Atividade do Utilizador</li>
+</ul>
+
+<p>Demora algum tempo a gerar</p>
+
+<h4 id="prg-geradores-pseudo-aleatórios">PRG (Geradores Pseudo-Aleatórios)</h4>
+<ul>
+  <li>Estado: inicializado e actualizado periodicamente com fontes de entropia</li>
+  <li>Quando é pedido o próximo número, o número é gerado e o estado é atualizado</li>
+  <li><strong>Problema</strong>: podemos pedir números aleatórios, mas as fontes de entropia não mudaram o suficiente</li>
+</ul>
+
+<p>Em Linux existem ficheiros que geram estes números:  <code class="language-plaintext highlighter-rouge">/dev/urandom</code> e <code class="language-plaintext highlighter-rouge">/dev/random</code>.</p>
+
+<p><a href="https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom">When to use /dev/random vs /dev/urandom</a></p>
+
+<p>Se em <code class="language-plaintext highlighter-rouge">/dev/random</code> se chega à conclusão de que não existem alterações das fontes de entropia suficientes, vai bloquear. <code class="language-plaintext highlighter-rouge">/dev/urandom</code> não bloqueia.</p>
+
+<p>Situração de trade-off:</p>
+<ul>
+  <li>Não sabemos o quão facilmente o sistema vai detetar diferenças entre boas mudanças de entropia e más e muitas pessoas também não sabem que <code class="language-plaintext highlighter-rouge">/dev/random</code> bloqueia e retorna um null pointer quando isto acontece.</li>
+  <li>Se isto acontecer e as aplicações não verificarem se foi recebido um null pointer, o processo continua sem qualquer aleatoriadade!</li>
+</ul>
+
+<h1 id="gestão-de-chaves">Gestão de Chaves</h1>
+<p>Com criptografia simétrica:</p>
+<ul>
+  <li>N Agentes: <code class="language-plaintext highlighter-rouge">N(N-1)/2 chaves</code></li>
+</ul>
+
+<h2 id="kdc-key-distribution-center---sistemas-fechados">KDC (Key Distribution Center - Sistemas Fechados)</h2>
+<ul>
+  <li>Entidade central, que tem como função gerir a distribuição de chaves no sistema</li>
+  <li>É necessário <strong>1 chave por utilizador</strong>. Estas chaves são de longa duranção, uma vez que são utilizadas para sempre.</li>
+</ul>
+
+<p><strong>Como comunia o agente A com o agente B?</strong>
+Para A comunicar com B, usa-se <strong>KDC</strong> para enviar a chave de comunicação entre os dois computadores</p>
+
+<ul>
+  <li><strong>Desvantagem</strong>: ponto central de falha</li>
+</ul>
+
+<h2 id="longa-duração-e-chaves-efémeras">Longa Duração e Chaves Efémeras</h2>
+<h3 id="chaves-efémeras">Chaves Efémeras</h3>
+<p>Chaves que serão descartadas no futuro. São chaves de sessão.</p>
+
+<p><strong>Comprometer uma chave de sessão não deve ter nenhuma consequência para o sistema. Apenas os dados associados à sessão devem estar em risco</strong></p>
+
+<blockquote>
+  <p>Talvez seja um caso de isolamento</p>
+</blockquote>
+
+<h3 id="longa-duração">Longa Duração</h3>
+<p>Chaves que são partilhadas quado um utilizador entra no sistema, por exemplo, e vive durante muito tempo. Têm restrições fortes para o seu armazenamento: hardware security module, smartcard, etc</p>
+
+<h1 id="cifras-assimétricas-criptografia-de-chave-pública">Cifras Assimétricas (Criptografia de Chave Pública)</h1>
+<h2 id="limitações-da-criptografia-simétrica">Limitações da Criptografia Simétrica</h2>
+<h3 id="problema-1">Problema 1</h3>
+<p>Chaves Simétricas de Longa duração pré-partilhadas</p>
+<ul>
+  <li>em sistemas abertos assíncronos =&gt; cifras de chave pública</li>
+  <li>em sistemas abertos síncronos =&gt; acordos de chave + assinaturas digitais</li>
+</ul>
+
+<p>A comunicação por vezes tem de ser bidirecional e é preciso trocas chaves. Ao usar chaves públicas neste tipo de situação adiciona um grande overhead.</p>
+
+<h4 id="problema-2">Problema 2</h4>
+<p>Não Repúdio: em sistemas abertos, não podemos negar a receção de um documento de outra máquina. Como sabemos se alguém tem a chave e falsificou a mensagem?</p>
+<ul>
+  <li>em sistemas abertos =&gt; assinaturas digitais</li>
+</ul>
+
+<h2 id="chaves-públicas-assimétrico">Chaves Públicas (Assimétrico)</h2>
+<p>Usado para resolver problemas de partilha de chaves. Hoje em dia é usado principalmente para o transporte de chaves simétricas de um computador para outro.</p>
+
+<p><strong>Qualquer pessoa pode conehcer uma chave pública</strong>
+!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  pk-sk.png  <span class="invalid-link-brackets">]]</span></span></p>
+<blockquote>
+  <p>Há uma pessoa que sabe mais que os outros, por isso que se chama chave privada</p>
+</blockquote>
+
+<p>Podemos usar a chave pública para encriptar a mensagem, mas só a pessoa com a chave privada pode desencripta-la.</p>
+
+<p><strong>Paradigma híbrido:</strong> emissor gera chave de sessão <strong>simétrica</strong> e usa essa chave para cifrar a mensagem. Depois usa-se a chave pública do destinatário para cifrar a chave da sessão e manda-se os dois.
+Envia-se a mensagem cifrada com a chave simétrica, mas tambem envia-se a chave simétrica cifrada com a chave pública do destinatário.</p>
+
+<h2 id="oaep-encryption">OAEP Encryption</h2>
+<p>Na verdade hoje em dia a cifra de chave pública só é utilizada no email, já que não muito eficiente.</p>
+
+<p>One-way trapdoor permutation <strong>não é uma cifra,</strong> porque <em>aparentemente não o fator aleatorio. Se tivermos uma mensagem que pode ser sim ou não, podemos descobrir facilmente seu conteúdo, verificando se a permutação de sim é igual a mensagem.</em></p>
+
+<h1 id="assinatura-digital">Assinatura digital</h1>
+<p>As assinaturas garantem que a autenticação e integridade (já que não é possível alterar o documento depois da assinatura).</p>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  digital-signature.png  <span class="invalid-link-brackets">]]</span></span>
+Temos dois tipos de chaves:</p>
+<ul>
+  <li><strong>Chave de Assinatura</strong>: é a chave secreta</li>
+  <li><strong>Chave de Verificação</strong>: que é a chave conhecida por todos, usada para verificar a autenticação.</li>
+</ul>
+
+<p><em>Ter uma chave que é conhecida por várias pessoas destrói o princípio do repúdio. Porque MAC tem repúdio?</em></p>
+
+<p>Note que as assinaturas de digitais funcionam de forma contrária as chaves públicas. Nas chaves públicas apenas uma pessoa pode receber a mensagem, nas assinaturas digitais vários podem receber a mensagem, mas apenas um pode enviar. <em>Isto lembra um pouco publisher/subscriber (assinaturas digitais) e push/pull (chaves públicas).</em></p>
+
+<p>As assinaturas digitais possuem algumas propriedades:</p>
+<ul>
+  <li>Não é possível falsificar, reutilizar e não é repudiável.</li>
+  <li>Garantia de autoria do documento</li>
+  <li>Documento não pode ser alterado depois da assinatura.</li>
+</ul>
+
+<p>No entanto as garantias também dependem de alguns pressupostos:</p>
+
+<ul>
+  <li>Chave de assinatura não comprometida</li>
+  <li>Algoritmo de assinatura criptograficamente seguro</li>
+  <li>Chave pública (aquela que verifica) é autentica.</li>
+</ul>
+
+<p><strong>Mas como podemos verificar se a assinatura que é usada para verificação vem da pessoa certa?</strong></p>
+
+<h2 id="como-contruir-uma-assinatura-digital">Como contruir uma assinatura digital?</h2>
+<p>O algoritmo de RSA é muito lento do que assinaturas com base em curvas elípticas (ECDSA). tem chaves públicas mais pequenas.</p>
+
+<h1 id="envelopes-digitais">Envelopes digitais</h1>
+<p>Combinamos assinaturas digitais e cifras assimétricas.</p>
+
+<p>Tinhamos visto que há vantagens em autenticarmos o conteúdo já cifrado (porquê isto evita que código malicioso fique em memória durante a verificação). Para garantir não repúdio de envelopes precisamos assumir que se saiba qual é o conteúdo da mensagem.</p>
+
+<blockquote>
+  <p>Analogia do envelope, não faz sentido uma pessoa assinar um envelope lacrado sem saber o que está la dentro.</p>
+</blockquote>
+
+<p>Por isso, para garantir o não repúdio, precisamos na verdade assinar o conteúdo digital e só depois cifrar.</p>
+
+<h1 id="exemplos">Exemplos</h1>
+<h2 id="email-seguro">Email Seguro</h2>
+<h3 id="cenário">Cenário</h3>
+<ul>
+  <li>Alice conhece a chave pública de Bob: o que permite a Alice enviar informação cifrada ao Bob.</li>
+  <li>Bob conhece a chave de verificação da Alice (pública).</li>
+</ul>
+
+<h3 id="objetivos">Objetivos</h3>
+<ul>
+  <li>Mensagem a enviar deve ser confidencial</li>
+  <li>Mensagem a enviar deve ser autêntica e não-repudiável
+<strong>IMPORTANTE</strong>: A Alice nunca vai ter certeza se Bob recebeu a mensagem ou não.</li>
+</ul>
+
+<h3 id="solução">Solução</h3>
+<p>No caso simétrico nós primeiro ciframos e depois autenticamos.
+No caso do email seguro temos que primeiro <strong>assinar e depois autenticamos.</strong></p>
+
+<h4 id="garante-não-repúdio-confidencialidade-e-autenticidade">Garante não repúdio, confidencialidade e autenticidade?</h4>
+<ul>
+  <li>Se mensagem assinada incluir a informação de que Bob era o destinatário =&gt; sim!</li>
+  <li>Caso contrário, Alice pode ter enviado para Carol que re-cifrou para Bob =&gt; não!</li>
+</ul>
+
+<p>Em geral: cuidado com meta-dados quando se combina cifras com assinaturas</p>
+
+<h3 id="porque-não-encriptar--assinar">Porque não Encriptar &amp; Assinar?</h3>
+<p>Se a Alice primeiro cifrar e depois assinar, a Alice pode afirmar que <strong>não sabia qual era o conteúdo que estava a assinar.</strong> O que anula a propriedade de <strong>não repúdio.</strong> Ainda, era possível que Alice envia uma mensagem para uma third-party (Carol). A carol poderia ler o conteúdo da mensagem e depois recifrá-la para o Bob. <strong>Perdemos a confidencialidade.</strong></p>
+
+<p><strong>Metadados:</strong> precisamos ter cuidado com estes, porque definem também quem é o destinatário.</p>
+
+<p><a href="https://theworld.com/~dtd/sign_encrypt/sign_encrypt7.html">Defective Sign &amp; Encrypt in S/MIME, PKCS#7, MOSS, PEM, PGP, and XML</a>
+Tópico 4.1 explica a perda de confidencialidade.</p>
+
+<h2 id="acordo-de-chaves">Acordo de Chaves</h2>
+<h3 id="pressupostos">Pressupostos</h3>
+<p>Alice e Bob conhecem mutuamente as chaves públicas e de verificação de um do outro. (Ela já foi usada e se tem a confirmação disto).</p>
+
+<h3 id="perfect-forward-secrecy">Perfect forward secrecy</h3>
+<p><a href="https://avinetworks.com/glossary/perfect-forward-secrecy/">What is Perfect Forward Secrecy? Definition &amp; FAQs | Avi Networks</a></p>
+
+<p>“Refers to an encryption system that changes the keys used to encrypt and decrypt information frequently and automatically. This ongoing process ensures that even if the most recent key is hacked, a minimal amount of sensitive data is exposed.”</p>
+
+<p>Comprometer uma chave de longa duração não vai comprometer as sessões anteriores.</p>
+
+<p>O que é um pouco difícil de atingir com uma cifra assimétrica. Porque se for revelada a chave que decifra a cifra e o atacante tiver o registo de todas as comunicações, ele consegue ter acesso aos registos anteriores. Por isso não usamos esta abordagem.</p>
+
+<blockquote>
+  <p><em>Curiosidade: demorou muitos anos pra se convergir para uma solução deste problema. Porque estas convergências são decididas pelo acordo de uma série de entidades. No entanto, estas entidades possuem seus próprios interesses como manter o código legacy que possuem dentro dos padrões de convenção. Por isso estes tipos de avanço demoram muito.</em></p>
+</blockquote>
+
+<h1 id="diffie-hellman">Diffie-Hellman</h1>
+<blockquote>
+  <p><em>Esta é uma intuição do protocolo.</em></p>
+</blockquote>
+
+<p><strong>Parâmetros públicos</strong>: (G, g, ∘)</p>
+
+<h4 id="conjunto-g">Conjunto G:</h4>
+<ul>
+  <li>Valores inteiros entre [0, p) é que p é um primo grande.</li>
+  <li>Podem ser pontos numa curva elíptica: são pares de números inteiros entre [0,p).</li>
+</ul>
+
+<p>Definimos um <strong>p</strong> e calculamos os pontos que satisfazem uma curva elíptica.</p>
+
+<h4 id="operação-">Operação ∘</h4>
+<p>Uma operação que permite combinar dois pontos numa curva e obter outro ponto na curva. São operações muito eficientes.</p>
+
+<h4 id="gerador-g">Gerador g</h4>
+<p>Por exponeciação conseguimos gerar muitos números.</p>
+
+<p>Mas precisamos que a exponenciação tenha uma propriedade obvia:
+\((g^x)^y = g^{xy} = g^{yx} = (g^y)^x\)
+Escolhemos um número primo <strong>q</strong> para elevar o <strong>g.</strong></p>
+
+<h3 id="protocolo">Protocolo</h3>
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  deffie-hellman.png  <span class="invalid-link-brackets">]]</span></span></p>
+<ul>
+  <li>O x e y são parâmetros privados. Mas X e Y são públicos e são trocados na rede.</li>
+  <li>Com a troca de mensagens, ambos Bob e Alice aplicam a exponenciação da sua chave privada.
+O ponto é que o atacante não pode conseguir fatorizar o X e o Y.</li>
+</ul>
+
+<h3 id="vulnerabilidade---man-in-the-middle">Vulnerabilidade - Man-in-the-Middle</h3>
+<p>Como não há identificação, podemos aplicar aqui o ataque do Man-in-the-Middle.
+!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  diffie-hellman-mitm.png  <span class="invalid-link-brackets">]]</span></span>
+Portanto, nunca podemos confiar numa chave pública sem identificação. Sempre podemos assumir que esta chave pode ser mudada por um atacante.</p>
+
+<h3 id="solução---man-in-the-middle">Solução - Man-In-The-Middle</h3>
+<p>Alice e Bob precisam conhecer de alguma forma a chave de verificação de um do outro.
+!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  deffie-hellman-signed.png  <span class="invalid-link-brackets">]]</span></span>
+É importante que assinemos os pares X e Y.</p>
+<ul>
+  <li>Alice verifica a assinatura de Bob na segunda mensagem e só prossegue no protocolo se Bob de facto recebeu o mesmo X que ela enviou;</li>
+  <li>A Alice devolve a confirmação;</li>
+  <li>Só depois o Bob confirma que a ação foi concluída.</li>
+</ul>
+
+<blockquote>
+  <p>Assumindo que isto é o que usamos no TLS, isto implica que os browsers estariam a fazer assinaturas. Mas não estão, porque temos um servidor para muitos clientes, então o browser (Alice) quando recebe uma mensagem do Bob (o servidor) por HTTPS tem a certeza de que está a falar com o servidor. O servidor não precisa saber com quem se fala, mas se autentica por meio de logins, etc.</p>
+</blockquote>
+
+    </content>
+
+    <side style="font-size: 0.9em">
+      <div class="notes">
+        <h3 style="margin-bottom: 1em">Notes mentioning this note</h3>
+        
+        <div style="display: grid; grid-gap: 1em; grid-template-columns: repeat(1fr);">
+        
+          <div class="backlink-box">
+          <a class="internal-link" href="/knowledge-tree/resumos/FSI/FSI/fsi">Fundamentos de Segurança Informática</a><br>
+          <div style="font-size: 0.9em">Resumos da cadeira</div>
+          </div>
+        
+        </div>
+        
+      </div>
+      <div class="graph-viz">
+        <h3 style="margin-bottom: 1em">Graph Visualization</h3>
+        <style>
+  .links line {
+    stroke: #ccc;
+    opacity: 0.5;
+  }
+
+  .nodes circle {
+    cursor: pointer;
+    fill: #8b88e6;
+    transition: all 0.15s ease-out;
+  }
+
+  .text text {
+    cursor: pointer;
+    fill: #333;
+    text-shadow: -1px -1px 0 #fafafabb, 1px -1px 0 #fafafabb, -1px 1px 0 #fafafabb, 1px 1px 0 #fafafabb;
+  }
+
+  .nodes [active],
+  .text [active] {
+    cursor: pointer;
+    fill: black;
+  }
+
+  .inactive {
+    opacity: 0.1;
+    transition: all 0.15s ease-out;
+  }
+
+  #graph-wrapper {
+    background: #fcfcfc;
+    border-radius: 4px;
+    height: auto;
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+  integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+  crossorigin="anonymous"></script>
+
+<div id="graph-wrapper">
+  <script>
+    const MINIMAL_NODE_SIZE = 8;
+    const MAX_NODE_SIZE = 12;
+    const ACTIVE_RADIUS_FACTOR = 1.5;
+    const STROKE = 1;
+    const FONT_SIZE = 16;
+    const TICKS = 200;
+    const FONT_BASELINE = 40;
+    const MAX_LABEL_LENGTH = 50;
+
+    const graphData = {"edges":[{"source":"503179796958532336743230207621597515898","target":"1422108377848304020"},{"source":"100072086790617209837265","target":"38041"},{"source":"103841823815487875","target":"27613844020"},{"source":"240589227765099673052794226274910629357","target":"2402776049557"},{"source":"240589227765099673052794226274910629357","target":"81676889533246026119639"},{"source":"240589227765099673052794226274910629357","target":"105853271995781485577129644"},{"source":"240589227765099673052794226274910629357","target":"18206486889979855229696720616166476532701018412"},{"source":"240589227765099673052794226274910629357","target":"19548904114439035294623638491398769279229399"},{"source":"240589227765099673052794226274910629357","target":"7853092808745256997741119377796504708"},{"source":"240589227765099673052794226274910629357","target":"2782927863386519"},{"source":"240589227765099673052794226274910629357","target":"7850043983027514073448502100"},{"source":"240589227765099673052794226274910629357","target":"3241122110819881232318764"},{"source":"240589227765099673052794226274910629357","target":"5495051139013699250083799"},{"source":"240589227765099673052794226274910629357","target":"65443548425971875856684"},{"source":"240589227765099673052794226274910629357","target":"6421157057681797349145782253"},{"source":"46378530244815725","target":"240589227765099673052794226274910629357"},{"source":"774714518649319842117578546054867522169132704794","target":"103841823815487875"},{"source":"774714518649319842117578546054867522169132704794","target":"1680077656773453826"},{"source":"774714518649319842117578546054867522169132704794","target":"447698746565831359475675571306886394"},{"source":"774714518649319842117578546054867522169132704794","target":"1851849395087745244631"},{"source":"774714518649319842117578546054867522169132704794","target":"174414388749633151336036"},{"source":"774714518649319842117578546054867522169132704794","target":"3896682460950866925"},{"source":"46378530244815725","target":"774714518649319842117578546054867522169132704794"},{"source":"774714518649319842117578546054867522169132704794","target":"71684638065172"},{"source":"46378530244815725","target":"1632202199179734376687545757396595518803233444679072"},{"source":"50183515407140165401415593961866212395148222461086","target":"297117087099758275271869396"},{"source":"50183515407140165401415593961866212395148222461086","target":"143768490085477247"},{"source":"50183515407140165401415593961866212395148222461086","target":"2119742351888060458029509408534670102650"},{"source":"50183515407140165401415593961866212395148222461086","target":"49670930463710165929681420635052"},{"source":"50183515407140165401415593961866212395148222461086","target":"8377370676197544955211194395789671980339971808048"},{"source":"50183515407140165401415593961866212395148222461086","target":"5500055021409855647479244329548649272482"},{"source":"50183515407140165401415593961866212395148222461086","target":"133540821863415617892879786549633158"},{"source":"50183515407140165401415593961866212395148222461086","target":"1516445552606797852005007732405178305066454090157728370000968386"},{"source":"46378530244815725","target":"50183515407140165401415593961866212395148222461086"}],"nodes":[{"id":"93602086757531175064909553","path":"/knowledge-tree/conceitos/Algorithms/Breath%20First%20Search/breath-first-search","label":"Breath first search"},{"id":"2964338397953191999125233","path":"/knowledge-tree/conceitos/Algorithms/Depth%20First%20Search/depth-first-search","label":"Depth first search"},{"id":"63022295962788201453","path":"/knowledge-tree/conceitos/Databases/Data%20Retrieval/data-retrieval","label":"Data retrieval"},{"id":"6925473830595409991896469767149","path":"/knowledge-tree/conceitos/Databases/Information%20Retrieval/information-retrieval","label":"Information retrieval"},{"id":"39788157","path":"/knowledge-tree/conceitos/Databases/NoSQL/nosql","label":"Nosql"},{"id":"37245","path":"/knowledge-tree/conceitos/Databases/SQL/sql","label":"Sql"},{"id":"1422108377848304020","path":"/knowledge-tree/conceitos/Networks/Asynchronous/asynchronous","label":"Asynchronous"},{"id":"33773422613162","path":"/knowledge-tree/conceitos/Networks/Byzantine/byzantine","label":"Byzantine"},{"id":"1248953862480574","path":"/knowledge-tree/conceitos/Networks/CAP%20Theorem/cap-theorem","label":"Cap theorem"},{"id":"595361","path":"/knowledge-tree/conceitos/Networks/CRDT/crdt","label":"Crdt"},{"id":"20980633","path":"/knowledge-tree/conceitos/Networks/Chord/chord","label":"Chord"},{"id":"180758507946934573733853352570660","path":"/knowledge-tree/conceitos/Networks/Distributed%20Hash%20Tables/distributed-hash-tables","label":"Distributed hash tables"},{"id":"196617406559747521982777238352564","path":"/knowledge-tree/conceitos/Networks/Epidemic%20Broadcat%20Trees/epidemic-broadcat-trees","label":"Epidemic broadcat trees"},{"id":"118364582846116905859515843","path":"/knowledge-tree/conceitos/Networks/Event-driven%20Server/event-driven-server","label":"Event Driven server"},{"id":"100072086790617209837265","path":"/knowledge-tree/conceitos/Networks/Gangster%20Paradox/gangster-paradox","label":"Gangster paradox"},{"id":"1305755994574","path":"/knowledge-tree/conceitos/Networks/Gnutella/gnutella","label":"Gnutella"},{"id":"28147445","path":"/knowledge-tree/conceitos/Networks/Graph/graph","label":"Graph"},{"id":"5346763475629440007514921644","path":"/knowledge-tree/conceitos/Networks/Interval%20Tree%20Clocks/interval-tree-clocks","label":"Interval tree clocks"},{"id":"1589861734498","path":"/knowledge-tree/conceitos/Networks/Kademlia/kademlia","label":"Kademlia"},{"id":"132141122442877141061782","path":"/knowledge-tree/conceitos/Networks/Linearizability/linearizability","label":"Linearizability"},{"id":"6417667107358961591817717861","path":"/knowledge-tree/conceitos/Networks/Media%20Access%20Control/media-access-control","label":"Media access control"},{"id":"23476356606711367982773281694029108615542100","path":"/knowledge-tree/conceitos/Networks/Message%20Authentication%20Code%20(MAC)/message-authentication-code-mac","label":"Message authentication code (mac)"},{"id":"503179796958532336743230207621597515898","path":"/knowledge-tree/conceitos/Networks/Message%20Oriented%20Middleware/message-oriented-middleware","label":"Message oriented middleware"},{"id":"11266535818559391234661965445002205","path":"/knowledge-tree/conceitos/Networks/Network%20Time%20Protocol%20(NTP)/network-time-protocol-ntp","label":"Network time protocol (ntp)"},{"id":"44825854","path":"/knowledge-tree/conceitos/Networks/Qorum/qorum","label":"Qorum"},{"id":"35904","path":"/knowledge-tree/conceitos/Networks/RPC/rpc","label":"Rpc"},{"id":"136004183879632219828","path":"/knowledge-tree/conceitos/Networks/Spanning%20Trees/spanning-trees","label":"Spanning trees"},{"id":"105891339425632660","path":"/knowledge-tree/conceitos/Networks/Synchronous/synchronous","label":"Synchronous"},{"id":"38041","path":"/knowledge-tree/conceitos/Networks/TCP/tcp","label":"Tcp"},{"id":"64200629008","path":"/knowledge-tree/conceitos/Networks/Threads/threads","label":"Threads"},{"id":"39373","path":"/knowledge-tree/conceitos/Networks/UDP/udp","label":"Udp"},{"id":"4132761509213563564","path":"/knowledge-tree/conceitos/Networks/Vector%20Clocks/vector-clocks","label":"Vector clocks"},{"id":"27613844020","path":"/knowledge-tree/conceitos/Web/Cookies/cookies","label":"Cookies"},{"id":"10321053344592847707750121767318446802220","path":"/knowledge-tree/conceitos/Web/Cross-Origin%20Resource%20Sharing/cross-origin-resource-sharing","label":"Cross Origin resource sharing"},{"id":"221215993544965438794685914937440718","path":"/knowledge-tree/conceitos/Web/Cross-Site%20Request%20Forgery/cross-site-request-forgery","label":"Cross Site request forgery"},{"id":"3483726243430623321687796","path":"/knowledge-tree/conceitos/Web/Frames%20and%20iFrames/frames-and-iframes","label":"Frames and iframes"},{"id":"1397113493381","path":"/knowledge-tree/conceitos/Web/HTTP%20Auth/http-auth","label":"Http auth"},{"id":"6255301569195718647962674","path":"/knowledge-tree/conceitos/Web/Same-Origin%20Policy/same-origin-policy","label":"Same Origin policy"},{"id":"6280954365573304766971756","path":"/knowledge-tree/conceitos/Web/Session%20Hijacking/session-hijacking","label":"Session hijacking"},{"id":"43804","path":"/knowledge-tree/conceitos/Web/XSS/xss","label":"Xss"},{"id":"46378530244815725","path":"/knowledge-tree/index/index","label":"Content List"},{"id":"2402776049557","path":"/knowledge-tree/resumos/AC/1.1.%20Introdution/1-1-introdution","label":"Untitled"},{"id":"81676889533246026119639","path":"/knowledge-tree/resumos/AC/1.2.%20Data%20Preparation/1-2-data-preparation","label":"Data Preparation"},{"id":"105853271995781485577129644","path":"/knowledge-tree/resumos/AC/1.3.%20Data%20Understanding/1-3-data-understanding","label":"Data Understanding"},{"id":"391640284630317801447218589253556416661780951","path":"/knowledge-tree/resumos/AC/1.4.%20Advanced%20Topics%20-%20Data%20Preparation/1-4-advanced-topics-data-preparation","label":"Advanced Topics - Data Preparation"},{"id":"18206486889979855229696720616166476532701018412","path":"/knowledge-tree/resumos/AC/2.1.%20Descriptive%20Analytics%20+%20Clustering/2-1-descriptive-analytics-clustering","label":"Descriptive Analytics + Clustering"},{"id":"210690132241943189195520856119340","path":"/knowledge-tree/resumos/AC/2.2.%20Frequent%20Pattern%20Mining%20-%20Association%20Rules/2-2-frequent-pattern-mining-association-rules","label":"Frequent Pattern Mining"},{"id":"19548904114439035294623638491398769279229399","path":"/knowledge-tree/resumos/AC/3.1.%20Introduction%20to%20Classification/3-1-introduction-to-classification","label":"Introduction to Classification"},{"id":"7853092808745256997741119377796504708","path":"/knowledge-tree/resumos/AC/3.2.%20Classification%20Algorithms/3-2-classification-algorithms","label":"Classification ALgorithms"},{"id":"2782927863386519","path":"/knowledge-tree/resumos/AC/3.3.%20Regression/3-3-regression","label":"Regression"},{"id":"7850043983027514073448502100","path":"/knowledge-tree/resumos/AC/3.4.%20Introduction%20to%20Recommender%20Systems/3-4-introduction-to-recommender-systems","label":"Recommender Systems"},{"id":"3241122110819881232318764","path":"/knowledge-tree/resumos/AC/3.5.%20Ensemble%20Learning/3-5-ensemble-learning","label":"Ensemble Learning"},{"id":"5495051139013699250083799","path":"/knowledge-tree/resumos/AC/4.1.%20Outlier%20Detection/4-1-outlier-detection","label":"Outlier Detection"},{"id":"65443548425971875856684","path":"/knowledge-tree/resumos/AC/4.2.%20ANN%20+%20Introduction%20to%20Deep%20Learning/4-2-ann-introduction-to-deep-learning","label":"ANN + Deep Learning"},{"id":"6421157057681797349145782253","path":"/knowledge-tree/resumos/AC/4.3.%20Metalearning%20&%20AutoML/4-3-metalearning-automl","label":"Metalearning & AutoML"},{"id":"240589227765099673052794226274910629357","path":"/knowledge-tree/resumos/AC/AC/ac","label":"Aprendizagem Computacional"},{"id":"103841823815487875","path":"/knowledge-tree/resumos/FSI/1.%20Web/1-web","label":"Segurança Web"},{"id":"1680077656773453826","path":"/knowledge-tree/resumos/FSI/2.%20Criptografia/2-criptografia","label":"Criptografia"},{"id":"447698746565831359475675571306886394","path":"/knowledge-tree/resumos/FSI/3.%20PK%20Infrastructure/3-pk-infrastructure","label":"Public-Key Infrastructure"},{"id":"1851849395087745244631","path":"/knowledge-tree/resumos/FSI/4.%20Authentication/4-authentication","label":"Authentication"},{"id":"174414388749633151336036","path":"/knowledge-tree/resumos/FSI/5.%20Redes/5-redes","label":"Segurança de Redes"},{"id":"3896682460950866925","path":"/knowledge-tree/resumos/FSI/6.%20TLS/6-tls","label":"TLS and Signal"},{"id":"774714518649319842117578546054867522169132704794","path":"/knowledge-tree/resumos/FSI/FSI/fsi","label":"Fundamentos de Segurança Informática"},{"id":"71684638065172","path":"/knowledge-tree/resumos/FSI/Perguntas%20FSI/perguntas-fsi","label":"Perguntas"},{"id":"1632202199179734376687545757396595518803233444679072","path":"/knowledge-tree/resumos/PRI/PRI/pri","label":"Processamento e Recuperação de Informação"},{"id":"1385730979894442211642858409180597843489748945","path":"/knowledge-tree/resumos/SDLE/10.%20Quorum%20Consensus%20Replicated%20ADT/10-quorum-consensus-replicated-adt","label":"10. quorum consensus replicated adt"},{"id":"297117087099758275271869396","path":"/knowledge-tree/resumos/SDLE/11.%20Byzantine%20Quorums/11-byzantine-quorums","label":"11. byzantine quorums"},{"id":"2452250852148947176341154290704886726148708359198638","path":"/knowledge-tree/resumos/SDLE/12.%20Practical%20Byzantine%20Fault-Tolerance/12-practical-byzantine-fault-tolerance","label":"12. practical byzantine fault Tolerance"},{"id":"143768490085477247","path":"/knowledge-tree/resumos/SDLE/13.%20Blockchain/13-blockchain","label":"13. blockchain"},{"id":"2119742351888060458029509408534670102650","path":"/knowledge-tree/resumos/SDLE/2.%20Message%20Oriented%20Middleware/2-message-oriented-middleware","label":"2. message oriented middleware"},{"id":"49670930463710165929681420635052","path":"/knowledge-tree/resumos/SDLE/3.%20Processing%20and%20Scaling/3-processing-and-scaling","label":"3. processing and scaling"},{"id":"8377370676197544955211194395789671980339971808048","path":"/knowledge-tree/resumos/SDLE/4.%20Replication%20and%20Consistency%20Models/4-replication-and-consistency-models","label":"4. replication and consistency models"},{"id":"7856802203877937602475915419792883785110654260","path":"/knowledge-tree/resumos/SDLE/5.%20Scalable%20Distributed%20Topologies/5-scalable-distributed-topologies","label":"5. scalable distributed topologies"},{"id":"5500055021409855647479244329548649272482","path":"/knowledge-tree/resumos/SDLE/6.%20System%20Design%20for%20Large%20Scale/6-system-design-for-large-scale","label":"6. system design for large scale"},{"id":"133540821863415617892879786549633158","path":"/knowledge-tree/resumos/SDLE/7.%20Physical%20and%20Logical%20Time/7-physical-and-logical-time","label":"7. physical and logical time"},{"id":"1516445552606797852005007732405178305066454090157728370000968386","path":"/knowledge-tree/resumos/SDLE/8.%20High%20Availability%20under%20Eventual%20Consistency/8-high-availability-under-eventual-consistency","label":"8. high availability under eventual consistency"},{"id":"77564326098429129869107156","path":"/knowledge-tree/resumos/SDLE/9.%20Quorums%20Consensus/9-quorums-consensus","label":"9. quorums consensus"},{"id":"50183515407140165401415593961866212395148222461086","path":"/knowledge-tree/resumos/SDLE/SDLE/sdle","label":"Sistemas Distribuídos em Larga Escala"}]}
+    let nodesData = graphData.nodes;
+    let linksData = graphData.edges;
+
+    const nodeSize = {};
+
+    const updateNodeSize = () => {
+      nodesData.forEach((el) => {
+        let weight =
+          3 *
+          Math.sqrt(
+            linksData.filter((l) => l.source.id === el.id || l.target.id === el.id)
+              .length + 1
+          );
+        if (weight < MINIMAL_NODE_SIZE) {
+          weight = MINIMAL_NODE_SIZE;
+        } else if (weight > MAX_NODE_SIZE) {
+          weight = MAX_NODE_SIZE;
+        }
+        nodeSize[el.id] = weight;
+      });
+    };
+
+    const onClick = (d) => {
+      window.location = d.path
+    };
+
+    const onMouseover = function (d) {
+      const relatedNodesSet = new Set();
+      linksData
+        .filter((n) => n.target.id == d.id || n.source.id == d.id)
+        .forEach((n) => {
+          relatedNodesSet.add(n.target.id);
+          relatedNodesSet.add(n.source.id);
+        });
+
+      node.attr("class", (node_d) => {
+        if (node_d.id !== d.id && !relatedNodesSet.has(node_d.id)) {
+          return "inactive";
+        }
+        return "";
+      });
+
+      link.attr("class", (link_d) => {
+        if (link_d.source.id !== d.id && link_d.target.id !== d.id) {
+          return "inactive";
+        }
+        return "";
+      });
+
+      link.attr("stroke-width", (link_d) => {
+        if (link_d.source.id === d.id || link_d.target.id === d.id) {
+          return STROKE * 4;
+        }
+        return STROKE;
+      });
+      text.attr("class", (text_d) => {
+        if (text_d.id !== d.id && !relatedNodesSet.has(text_d.id)) {
+          return "inactive";
+        }
+        return "";
+      });
+    };
+
+    const onMouseout = function (d) {
+      node.attr("class", "");
+      link.attr("class", "");
+      text.attr("class", "");
+      link.attr("stroke-width", STROKE);
+    };
+
+    const sameNodes = (previous, next) => {
+      if (next.length !== previous.length) {
+        return false;
+      }
+
+      const map = new Map();
+      for (const node of previous) {
+        map.set(node.id, node.label);
+      }
+
+      for (const node of next) {
+        const found = map.get(node.id);
+        if (!found || found !== node.title) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const sameEdges = (previous, next) => {
+      if (next.length !== previous.length) {
+        return false;
+      }
+
+      const set = new Set();
+      for (const edge of previous) {
+        set.add(`${edge.source.id}-${edge.target.id}`);
+      }
+
+      for (const edge of next) {
+        if (!set.has(`${edge.source.id}-${edge.target.id}`)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const graphWrapper = document.getElementById('graph-wrapper')
+    const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    element.setAttribute("width", graphWrapper.getBoundingClientRect().width);
+    element.setAttribute("height", window.innerHeight * 0.8);
+    graphWrapper.appendChild(element);
+
+    const reportWindowSize = () => {
+      element.setAttribute("width", window.innerWidth);
+      element.setAttribute("height", window.innerHeight);
+    };
+
+    window.onresize = reportWindowSize;
+
+    const svg = d3.select("svg");
+    const width = Number(svg.attr("width"));
+    const height = Number(svg.attr("height"));
+    let zoomLevel = 1;
+
+    const simulation = d3
+      .forceSimulation(nodesData)
+      .force("forceX", d3.forceX().x(width / 2))
+      .force("forceY", d3.forceY().y(height / 2))
+      .force("charge", d3.forceManyBody())
+      .force(
+        "link",
+        d3
+          .forceLink(linksData)
+          .id((d) => d.id)
+          .distance(70)
+      )
+      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("collision", d3.forceCollide().radius(80))
+      .stop();
+
+    const g = svg.append("g");
+    let link = g.append("g").attr("class", "links").selectAll(".link");
+    let node = g.append("g").attr("class", "nodes").selectAll(".node");
+    let text = g.append("g").attr("class", "text").selectAll(".text");
+
+    const resize = () => {
+      if (d3.event) {
+        const scale = d3.event.transform;
+        zoomLevel = scale.k;
+        g.attr("transform", scale);
+      }
+
+      const zoomOrKeep = (value) => (zoomLevel >= 1 ? value / zoomLevel : value);
+
+      const font = Math.max(Math.round(zoomOrKeep(FONT_SIZE)), 1);
+
+      text.attr("font-size", (d) => font);
+      text.attr("y", (d) => d.y - zoomOrKeep(FONT_BASELINE) + 8);
+      link.attr("stroke-width", zoomOrKeep(STROKE));
+      node.attr("r", (d) => {
+        return zoomOrKeep(nodeSize[d.id]);
+      });
+      svg
+        .selectAll("circle")
+        .filter((_d, i, nodes) => d3.select(nodes[i]).attr("active"))
+        .attr("r", (d) => zoomOrKeep(ACTIVE_RADIUS_FACTOR * nodeSize[d.id]));
+    };
+
+    const ticked = () => {
+      node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      text
+        .attr("x", (d) => d.x)
+        .attr("y", (d) => d.y - (FONT_BASELINE - nodeSize[d.id]) / zoomLevel);
+      link
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
+    };
+
+    const restart = () => {
+      updateNodeSize();
+      node = node.data(nodesData, (d) => d.id);
+      node.exit().remove();
+      node = node
+        .enter()
+        .append("circle")
+        .attr("r", (d) => {
+          return nodeSize[d.id];
+        })
+        .on("click", onClick)
+        .on("mouseover", onMouseover)
+        .on("mouseout", onMouseout)
+        .merge(node);
+
+      link = link.data(linksData, (d) => `${d.source.id}-${d.target.id}`);
+      link.exit().remove();
+      link = link.enter().append("line").attr("stroke-width", STROKE).merge(link);
+
+      text = text.data(nodesData, (d) => d.label);
+      text.exit().remove();
+      text = text
+        .enter()
+        .append("text")
+        .text((d) => shorten(d.label.replace(/_*/g, ""), MAX_LABEL_LENGTH))
+        .attr("font-size", `${FONT_SIZE}px`)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "central")
+        .on("click", onClick)
+        .on("mouseover", onMouseover)
+        .on("mouseout", onMouseout)
+        .merge(text);
+
+      node.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+      text.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+
+      simulation.nodes(nodesData);
+      simulation.force("link").links(linksData);
+      simulation.alpha(1).restart();
+      simulation.stop();
+
+      for (let i = 0; i < TICKS; i++) {
+        simulation.tick();
+      }
+
+      ticked();
+    };
+
+    const zoomHandler = d3.zoom().scaleExtent([0.2, 3]).on("zoom", resize);
+
+    zoomHandler(svg);
+    restart();
+
+    function isCurrentPath(notePath) {
+      return window.location.pathname.includes(notePath)
+    }
+
+    function shorten(str, maxLen, separator = ' ') {
+      if (str.length <= maxLen) return str;
+      return str.substr(0, str.lastIndexOf(separator, maxLen)) + '...';
+    }
+  </script>
+</div>
+
+      </div>
+    </side>
+  </div>
+</article>
+    </main>
+
+    <footer>
+      <p style="text-align: center;">Wow, you just found a wild footer!</p>
+
+    </footer>
+  </body>
+</html>

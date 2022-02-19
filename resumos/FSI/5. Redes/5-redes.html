@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+
+  <link rel="icon" href="" type="image/png" sizes="16x16"/>
+  <link rel="canonical" href="samuuuh.github.io/resumos/FSI/5.%20Redes/5-redes" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RedeComunicação• Sintaxe: especificação da estrutura das mensagens, ordem, formato• Semântica: qual o significado de uma mensagem, ação a desencadear• Normas...">
+  <meta property="og:site_name" content="Knowledge Tree">
+
+  <link rel="stylesheet" href="/knowledge-tree/assets/css/main.css">
+
+  
+  <meta property="og:description" content="RedeComunicação• Sintaxe: especificação da estrutura das mensagens, ordem, formato• Semântica: qual o significado de uma mensagem, ação a desencadear• Normas..."/>
+  
+
+  
+  <meta property="og:title" content="Segurança de Redes">
+  <meta property="og:type" content="article">
+  
+
+  
+  <meta property="article:published_time" content="2022-02-19T13:44:00+00:00">
+  <meta property="article:author" content="samuuuh.github.io/">
+  
+
+  <meta property="og:url" content="samuuuh.github.io/resumos/FSI/5.%20Redes/5-redes" />
+
+  
+
+  <title>
+    
+      Segurança de Redes &mdash; Knowledge Tree
+    
+  </title>
+</head>
+
+  
+  <body>
+    <nav>
+    <div>
+        <a class="header-title" href="/knowledge-tree/"><b>Knowledge Tree</b></a>
+        <a class="header-link" href="/knowledge-tree/about">About</a>
+        <a class="header-link" href="https://github.com/Samuuuh/knowledge-tree">Github</a>
+    </div>
+</nav>
+
+
+    <main class="main-content">
+      <article>
+  <div>
+    <h1>Segurança de Redes</h1>
+    <time datetime="2022-02-19T13:43:06+00:00">
+      Last updated on February 19, 2022
+      
+    </time>
+  </div>
+
+  <div id="notes-entry-container">
+    <content>
+      <h1 id="rede">Rede</h1>
+<h2 id="comunicação">Comunicação</h2>
+<p>• Sintaxe: especificação da estrutura das mensagens, ordem, formato<br />
+• Semântica: qual o significado de uma mensagem, ação a desencadear<br />
+• Normas/especificações: todos partilham as mesmas regras</p>
+
+<h2 id="dispositivos">Dispositivos</h2>
+<p>• <strong>Camada física</strong>: hubs, repetidores, antenas, cabos<br />
+• <strong>Camada lógica</strong>: switches, bridges<br />
+• <strong>Camada de rede</strong>: routers<br />
+• <strong>Camada de transporte e superior</strong>: gateways</p>
+
+<h2 id="protocolo-ip">Protocolo IP</h2>
+<p>Não há garantias de entrega nem garantias de recuperação de uma mensagem. Pacotes podem se perder, ser permutados ou repetidos.
+Endereço é atribuido de forma estática ou dinamicamente via DHCP.</p>
+
+<p>Se aplicação quer alguma garantia, esta deve ser aplicada na camada de transporte.</p>
+
+<blockquote>
+  <p>O ponto é que como sabemos se o pacote realmente veio de um endereço ip específico? Qualquer pessoa ponde enviar um pacote afirmando ser um determinado endereço quando na verdade não é. <em>Não há garantias de nada</em>.</p>
+</blockquote>
+
+<h1 id="comunicação-na-internet">Comunicação na internet</h1>
+<p>A comunicação dentro de uma rede local é feita com base em <strong>MAC addresses</strong>.
+O <strong>Switch</strong> optimiza distribuição de pacotes na rede local (recorda endereços MAC)</p>
+
+<h4 id="address-resolution-arp">Address Resolution (ARP)</h4>
+<p>• Pedido: meu MAC + quem tem o IP?
+• Resposta: meu MAC + teu MAC + meu IP</p>
+
+<h2 id="protocolo-tcp">Protocolo TCP</h2>
+<p>Comunicação fiável entre aplicações em máquinas diferentes.</p>
+
+<h4 id="caracteristicas">Caracteristicas</h4>
+<ul>
+  <li>Ligações de longa duração, streams de bytes</li>
+  <li>Conexão e desconexão explícitos</li>
+  <li>Gestão de tráfego/congestão</li>
+  <li>Portas identificadas por um número, sendo que algumas estão reservadas para funções específicas</li>
+</ul>
+
+<h4 id="detalhes">Detalhes</h4>
+<ul>
+  <li><em>FIN</em> termina a ligação (implica ACK)</li>
+  <li><em>RST</em> permite ao cliente terminar a ligação (sem ACK)</li>
+  <li><em>UDP</em> é uma alternativa wrapper do IP sem ligações/gestão do <em>TCP</em></li>
+</ul>
+
+<h3 id="handshake-e-comunicações">Handshake e Comunicações</h3>
+<p>Ligações geridas com base em  números de sequência (32-bits)<br />
+Dados enviados em segmentos:  1 segmento = 1 pacote IP<br />
+Receptor confirma (ACK) receção dos dados enquanto que o emissor pode retransmitir e adaptar cadência em função de timeouts.</p>
+
+<p>!<span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  tcp-syn.png  <span class="invalid-link-brackets">]]</span></span></p>
+
+<h2 id="domain-name-service-dns">Domain Name Service (DNS)</h2>
+<p>Existem 13 servidores de raiz com visão completa. Nós inferiores têm visão parcial.</p>
+
+<h1 id="segurança-na-rede">Segurança na Rede</h1>
+<h2 id="modelo-cia">Modelo CIA</h2>
+<p>Confidencialidade, Integridade, Disponibilidade</p>
+
+<p>Ataques potenciais em todos os níveis da rede e com diversos níveis de<br />
+intervenção:<br />
+• Físico, ligação direta ao meio de comunicação<br />
+• Dispositivos manipulados/configurados para realizar ataques<br />
+• Infraestruturas elaboradas de vigilância e controlo de comunicações</p>
+
+<h2 id="adversários">Adversários</h2>
+<p>Veremos que, ao nível das comunicações, existe pouca ou nenhuma proteção:<br />
+• Atacantes que podem observar comunicações (eavesdropper)<br />
+• Atacantes que podem inserir pacotes (off path)<br />
+• Atacantes que podem observar e inserir pacotes (on path)<br />
+• Atacantes que podem controlar todas as comunicações (man in the middle)</p>
+
+<p>Para ter proteção na Internet é necessário utilizar criptografia:<br />
+• TLS, IPSec, etc.</p>
+
+<h3 id="camada-físicalógica">Camada Física/Lógica</h3>
+<h4 id="wiretapping">Wiretapping</h4>
+<p>Wiretapping é o processo de escutar um canal de comunicações onde entidades terceiras estão a trocar informação.</p>
+
+<h4 id="eavesdropping">Eavesdropping</h4>
+<p>Wiretapping é o processo de escutar um canal de comunicações onde entidades terceiras estão a trocar informação.</p>
+
+<h4 id="mac-flooding">MAC Flooding</h4>
+<p>Um switch mantém uma tabela dos endereços MAC que estão em cada segmento. Injectando mensagens com MACs novos na rede, estas tabelas são esvaziadas dos endereços reais.</p>
+
+<h4 id="mac-spoofing">Mac Spoofing</h4>
+<p>Quando o sniff nos revela o MAC address de uma máquina, podemos usurpa-lo e configurar a nossa placa de rede a usar esse endereço.</p>
+
+<h2 id="camada-de-rede---protocolo-ip">Camada de Rede - Protocolo IP</h2>
+<p>Não existe autenticação. Podemos enviar pacotes a quem quisermos</p>
+
+<h4 id="exemplos">Exemplos</h4>
+<p>• Scanning<br />
+	• Detetar máquinas na rede<br />
+	• Enviar mensagens e observar respostas para caracterizar alvo potencial, detetar vulnerabilidades, etc.</p>
+
+<p>• DoS<br />
+	• Sobrecarregar alvo com mais mensagens do que as que consegue tratar</p>
+
+<h3 id="arp-poisoning">ARP Poisoning</h3>
+<p>Usurpação de IP.</p>
+
+<h3 id="hihacking-de-routing">Hihacking de routing</h3>
+<p>O atacante faz com que as máquinas nessa subnet passem a utilizar como router uma máquina controlada pelo atacante.</p>
+
+<h3 id="rogue-dhcp">Rogue DHCP</h3>
+<p>Um rogue DHCP server pode convencer um cliente de que o router/gateway está num IP controlado pelo adversário, permitindo um ataque Man in the Middle.</p>
+
+<h3 id="dns-spoofing">DNS Spoofing</h3>
+<p>Convencer o alvo que que o servidor DNS é uma máquina controlada pelo atacante.</p>
+
+<h3 id="dns-cache-poisoning">DNS (cache) poisoning</h3>
+<p>Bombardear servidor DNS local com respostas de resolução DNS. Servidor DNS local aceita resposta que contém IP controlado pelo atacante e informa a máquina do utilizador com um IP errado</p>
+
+<h2 id="camada-de-transporte---protocolo-tcp">Camada de Transporte - Protocolo TCP</h2>
+<h3 id="terminação-de-ligações">Terminação de ligações</h3>
+<p>No TCP não existe qualquer forma de um nó saber se um pacote veio,  efetivamente, do emissor com quem pretende falar.</p>
+
+<p>Por isso, há um tipo de ataque em que alguém pode fingir ser o nó com quem está a se comunicar e enviar um pacote com a flag <em>RST</em>. Esta flag é uma forma de terminar a comunicação (funciona como um exit).</p>
+
+<blockquote>
+  <p>Esta flag é posta na camada TCP. Geralmente ocorre quando um dos computadores encerra a comunicação (lado A) e o outro lado volta numa tentantiva de continuar a comunicação (lado B). Neste caso o lado A enviaria um RST afirmando que não deseja mais continuar a ligação.</p>
+</blockquote>
+
+<p><a href="https://ipwithease.com/tcp-rst-flag/">TCP RST FLAG - IP With Ease</a></p>
+
+<h3 id="great-firewall">Great firewall</h3>
+<p>Este é um ataque feito pelo governo da China (TCP reset attacks). Numa tentativa de aceder um IP proibido, o governo da china envia um RST. Para fazer este ataque  há a necessidade de ter o controle da infra-estrutura.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Great_Firewall#Active_filtering">Great Firewall - Wikipedia</a>
+<a href="https://www.thousandeyes.com/blog/deconstructing-great-firewall-china/">Deconstructing the Great Firewall of China</a></p>
+
+<h3 id="spoofing-às-cegas-off-path">Spoofing às cegas (off path)</h3>
+<p>Se os pacotes de redes entre dois nós passa pela nossa máquina conseguimos estabelecer um sessão com um dos computadores em nome de uma origem que não controlamos?</p>
+
+<p>Podemos tentar enviar um SYN e adivinhar o número de sequência. Se o número de sequência for baseado no relógio, prevê-lo não é difícil.</p>
+
+<p>A mitigação é usar números de sequência aleatórios.</p>
+
+<h3 id="tcp-session-hijacking">TCP Session Hijacking</h3>
+<p>Se alguém está na path de comunicação, o atacante pode fazer um TCP Session Hijacking.
+Depois de uma troca inical de mensagens para estabelecer a comunicação, o atacante já não precisa ter credenciais. Podemos aproveitar o estado dessa sessão para trocar mensagens com a vítima.</p>
+
+<blockquote>
+  <p>Diferente do spoofing, porque no spoofing tentamos nos passar por alguém desde o início.</p>
+</blockquote>
+
+<p>Este tipo de ataque é feito em três partes:</p>
+<ul>
+  <li>Tracking</li>
+  <li>Des-sincronização</li>
+  <li>Injeção</li>
+</ul>
+
+<h4 id="porque-é-eficaz">Porque é eficaz</h4>
+<ul>
+  <li>TCP/IP é intrinsecamente vulnerável a este simples ataque</li>
+  <li>Não há contra-medidas eficazes (a não ser criptografia)</li>
+  <li>Permite fazer bypass aos processos de autenticação.</li>
+</ul>
+
+<h4 id="dificuldade">Dificuldade</h4>
+<p>As dificuldade estão relacionadas à <strong>preparação para realizar o ataque.</strong></p>
+<ul>
+  <li>Precisamos estar no meio da comunicação</li>
+  <li>Precisamos conhecer quem são as entidades que estão a comunicar</li>
+  <li>Ainda precisamos intervir no momento do certo</li>
+</ul>
+
+<h4 id="dessincronização">Dessincronização</h4>
+<p>Envíamos um pacote para uma das partes e isto faz com que o numero de sequência aumente em uma delas. Durante o tempo em que as duas partes tentam estabelecer uma comunicação, abre-se uma janela para que atacante possa fazer uma injeção.</p>
+
+<h5 id="udp-hijacking">UDP hijacking</h5>
+<p>No UDP não há tanto controle de tráfego, portanto fazer um hijacking é ligeiramnete vai fácil.</p>
+
+<h3 id="udp-hijacking-1">UDP Hijacking</h3>
+<p>No UDP não há controlo de tráfego como no TCP. Um atacante consegue facilmente interferir na transferência, e tentar responder primeiro que os pares. Utilizando técnicas MiM o ataque torna-se mais simples: não é necessário ser mais rápido na resposta.</p>
+
+<h4 id="seconddate">Seconddate</h4>
+<p>Redireciona o tráfego para onde é desejado que ele seja interceptado. Este tipo de ataque usa os protocolos web para explorar as fraquezas.</p>
+
+<blockquote>
+  <p><em>A criptografia é uma medida de mitigação muito forte. Às vezes há muitos interesses de impedir com que pessoas façam criptografia forte, porque permite com que o governo possa usar téncas como estas para espionar pessoas e massa.</em></p>
+</blockquote>
+
+<p><a href="https://theintercept.com/2014/03/12/nsa-plans-infect-millions-computers-malware/">How the NSA Plans to Infect ‘Millions’ of Computers with Malware</a></p>
+
+<h3 id="conclusão">Conclusão</h3>
+<p>Protrocolos de rede não são seguros by design: segurança é adicionada à posteriori</p>
+<h4 id="como-resolver-segurança-entre-pontos-de-terminação">Como resolver: Segurança entre pontos de terminação</h4>
+<ul>
+  <li>Camada de reder: IPSEC</li>
+  <li>Camada de transporte: TLS</li>
+  <li>Camada de aplicação: Eg: Signal, Whatsapp, mais em: <span title="There is no note that matches this link." class="invalid-link">  <span class="invalid-link-brackets">[[</span>  6. TLS and Signal  <span class="invalid-link-brackets">]]</span></span></li>
+</ul>
+
+<h2 id="defesas">Defesas</h2>
+<p><strong>Problema</strong>: Como proteger as nossas máquinas ligadas à rede</p>
+
+<h3 id="solução-típica">Solução Típica</h3>
+<p>A firewall define uma fronteira entre o que está sobre o nosso controle o fora dele.</p>
+<ul>
+  <li>Firewall</li>
+  <li>Network Address Translation</li>
+  <li>Proxies de aplicações específicas</li>
+  <li>Network intrusion detection system</li>
+</ul>
+
+<p>Estes sistemas são utilizados para roteger a rede interna.</p>
+
+<h3 id="firewalls">Firewalls</h3>
+<ul>
+  <li>Há as <strong>firewalls locais</strong> (hostbased) que possuem regras específicas para a máquina.</li>
+  <li>Há também as <strong>firewalls da rede</strong> que filtra os pacotes. Elas tentam eliminar as comunicações que são identificadas como maliciosas. Proxies por outro lado, trabalham ao nível de uma aplicação.</li>
+</ul>
+
+<p>A firewall é muito flexível em comunicações que vem de dentro pra fora, mas muito restrita à comunicação de fora pra dentro.</p>
+
+<h3 id="como-controlar-o-tráfego-que-não-é-específicado-nas-políticas">Como controlar o tráfego que não é específicado nas políticas?</h3>
+<ul>
+  <li><strong>Default allow ⇒</strong> permitir todos os acessos exceto problemas específicos.</li>
+  <li><strong>Default deny ⇒</strong> Permtir apenas alguns acessos comuns a todos os sistemas. Esta é a escolha mais conservadora (proteção por omissão). Podemos começar com esta escolha e adicionar exceções.</li>
+</ul>
+
+<h3 id="filtragem-de-pacotes">Filtragem de pacotes</h3>
+<p>Utiliza-se informação das camadas de rede e de transporte.
+Alguns exelpos são bloquear endereços DNS e pedidos HTTP.</p>
+<ul>
+  <li><strong>Filtragem sem estado ⇒</strong> não tenta-se perceber o contexto do pacote. São sistemas mais eficientes, porém mais permissivos.</li>
+  <li><strong>Filtragem com estado ⇒</strong> mais difícil de implementar. Tenta perceber o contexto da mensagem. Mas é difícil de fazer para contextos elaborados.</li>
+</ul>
+
+<h3 id="contornar-filtragem-de-pacotes">Contornar filtragem de pacotes</h3>
+<p>Podemos tentar utilizar portas que estão atribuídas a um serviço qualquer. Usamos um túnel para realizar a comunicação. Um túnel é encapsular um protocolo dentro de outro. Por exemplo: ssh, vpn, etc.</p>
+
+<p><strong>Túnel:</strong> tentar utilizar canais que estão abertos nestes mecanismos de filtragem de pacotes, utilizando canal disponível para enviar mensagens do protocolo que o corresponde, mas enviando dentro dos pacotes outro protocolo.
+É como criar uma camada adicional.</p>
+
+<h3 id="nat">NAT</h3>
+<ul>
+  <li><strong>Vantagens:</strong> reduz exposição ao exterior (apenas um endereço IP) e ligações externas são descartadas a não ser que tenham sido iniciadas internamente.</li>
+  <li><strong>Desvantagens:</strong> pode deturmar o funcionamento de alguns protocolos. Fácil de fazer bypass para um adversário ativo (splitstream).</li>
+</ul>
+
+<h3 id="proxies-de-aplicação">Proxies de aplicação</h3>
+<h4 id="ideia">Ideia</h4>
+<ul>
+  <li>Obrigar tráfego de uma ou mais aplicações a passar por proxy</li>
+</ul>
+
+<h4 id="exemplos-1">Exemplos</h4>
+<ul>
+  <li>SMTP: Scan de virus, spam</li>
+  <li>SSH: Log de autenticação</li>
+  <li>HTTP/HTTPS: Bloquear URLs proibidas</li>
+</ul>
+
+<h3 id="network-idsips">Network IDS/IPS</h3>
+<h4 id="ideia-1">Ideia:</h4>
+<ul>
+  <li>manter tabela das ligações ativas e acompanhar o estado de cada uma</li>
+  <li>procurar padrões (parciais) como /etc/passwd</li>
+</ul>
+
+<h4 id="vantagem">Vantagem:</h4>
+<ul>
+  <li>Não é necessário alterar máquinas individuais</li>
+</ul>
+
+<h4 id="desvantagem">Desvantagem:</h4>
+<ul>
+  <li>Exigente em termos de processamento em ligações de alto débito</li>
+</ul>
+
+<h3 id="host-based-idsips">Host-Based IDS/IPS</h3>
+<p>Fazer deteção mais agressiva em algumas máquinas, defesa em profundidade.</p>
+
+<h3 id="pen-testing">Pen-Testing</h3>
+<p>Em vez de esperar por ataques, simular um</p>
+
+<h4 id="vantagens">Vantagens:</h4>
+<ul>
+  <li>proativo: falha não causa perda de valor e permite corrigir sistema</li>
+  <li>optimização: permite melhorar sistema/reduzir falsos positivos
+    <ul>
+      <li>ataque tratado noutro local não precisa de ser monitorizado</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="desvantagens">Desvantagens:</h4>
+<ul>
+  <li>Custos podem ser elevados</li>
+  <li>Por vezes um ataque, mesmo simulado, pode causar danos (e.g., down time)</li>
+</ul>
+
+<h3 id="honey-pots">Honey-Pots</h3>
+<p>Combinação com os sistemas anteriores usa-se em chamariz, expondo um sistema atraente para atacantes.</p>
+
+    </content>
+
+    <side style="font-size: 0.9em">
+      <div class="notes">
+        <h3 style="margin-bottom: 1em">Notes mentioning this note</h3>
+        
+        <div style="display: grid; grid-gap: 1em; grid-template-columns: repeat(1fr);">
+        
+          <div class="backlink-box">
+          <a class="internal-link" href="/knowledge-tree/resumos/FSI/FSI/fsi">Fundamentos de Segurança Informática</a><br>
+          <div style="font-size: 0.9em">Resumos da cadeira</div>
+          </div>
+        
+        </div>
+        
+      </div>
+      <div class="graph-viz">
+        <h3 style="margin-bottom: 1em">Graph Visualization</h3>
+        <style>
+  .links line {
+    stroke: #ccc;
+    opacity: 0.5;
+  }
+
+  .nodes circle {
+    cursor: pointer;
+    fill: #8b88e6;
+    transition: all 0.15s ease-out;
+  }
+
+  .text text {
+    cursor: pointer;
+    fill: #333;
+    text-shadow: -1px -1px 0 #fafafabb, 1px -1px 0 #fafafabb, -1px 1px 0 #fafafabb, 1px 1px 0 #fafafabb;
+  }
+
+  .nodes [active],
+  .text [active] {
+    cursor: pointer;
+    fill: black;
+  }
+
+  .inactive {
+    opacity: 0.1;
+    transition: all 0.15s ease-out;
+  }
+
+  #graph-wrapper {
+    background: #fcfcfc;
+    border-radius: 4px;
+    height: auto;
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+  integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+  crossorigin="anonymous"></script>
+
+<div id="graph-wrapper">
+  <script>
+    const MINIMAL_NODE_SIZE = 8;
+    const MAX_NODE_SIZE = 12;
+    const ACTIVE_RADIUS_FACTOR = 1.5;
+    const STROKE = 1;
+    const FONT_SIZE = 16;
+    const TICKS = 200;
+    const FONT_BASELINE = 40;
+    const MAX_LABEL_LENGTH = 50;
+
+    const graphData = {"edges":[{"source":"503179796958532336743230207621597515898","target":"1422108377848304020"},{"source":"100072086790617209837265","target":"38041"},{"source":"103841823815487875","target":"27613844020"},{"source":"240589227765099673052794226274910629357","target":"2402776049557"},{"source":"240589227765099673052794226274910629357","target":"81676889533246026119639"},{"source":"240589227765099673052794226274910629357","target":"105853271995781485577129644"},{"source":"240589227765099673052794226274910629357","target":"18206486889979855229696720616166476532701018412"},{"source":"240589227765099673052794226274910629357","target":"19548904114439035294623638491398769279229399"},{"source":"240589227765099673052794226274910629357","target":"7853092808745256997741119377796504708"},{"source":"240589227765099673052794226274910629357","target":"2782927863386519"},{"source":"240589227765099673052794226274910629357","target":"7850043983027514073448502100"},{"source":"240589227765099673052794226274910629357","target":"3241122110819881232318764"},{"source":"240589227765099673052794226274910629357","target":"5495051139013699250083799"},{"source":"240589227765099673052794226274910629357","target":"65443548425971875856684"},{"source":"240589227765099673052794226274910629357","target":"6421157057681797349145782253"},{"source":"46378530244815725","target":"240589227765099673052794226274910629357"},{"source":"774714518649319842117578546054867522169132704794","target":"103841823815487875"},{"source":"774714518649319842117578546054867522169132704794","target":"1680077656773453826"},{"source":"774714518649319842117578546054867522169132704794","target":"447698746565831359475675571306886394"},{"source":"774714518649319842117578546054867522169132704794","target":"1851849395087745244631"},{"source":"774714518649319842117578546054867522169132704794","target":"174414388749633151336036"},{"source":"774714518649319842117578546054867522169132704794","target":"3896682460950866925"},{"source":"46378530244815725","target":"774714518649319842117578546054867522169132704794"},{"source":"774714518649319842117578546054867522169132704794","target":"71684638065172"},{"source":"46378530244815725","target":"1632202199179734376687545757396595518803233444679072"},{"source":"50183515407140165401415593961866212395148222461086","target":"297117087099758275271869396"},{"source":"50183515407140165401415593961866212395148222461086","target":"143768490085477247"},{"source":"50183515407140165401415593961866212395148222461086","target":"2119742351888060458029509408534670102650"},{"source":"50183515407140165401415593961866212395148222461086","target":"49670930463710165929681420635052"},{"source":"50183515407140165401415593961866212395148222461086","target":"8377370676197544955211194395789671980339971808048"},{"source":"50183515407140165401415593961866212395148222461086","target":"5500055021409855647479244329548649272482"},{"source":"50183515407140165401415593961866212395148222461086","target":"133540821863415617892879786549633158"},{"source":"50183515407140165401415593961866212395148222461086","target":"1516445552606797852005007732405178305066454090157728370000968386"},{"source":"46378530244815725","target":"50183515407140165401415593961866212395148222461086"}],"nodes":[{"id":"93602086757531175064909553","path":"/knowledge-tree/conceitos/Algorithms/Breath%20First%20Search/breath-first-search","label":"Breath first search"},{"id":"2964338397953191999125233","path":"/knowledge-tree/conceitos/Algorithms/Depth%20First%20Search/depth-first-search","label":"Depth first search"},{"id":"63022295962788201453","path":"/knowledge-tree/conceitos/Databases/Data%20Retrieval/data-retrieval","label":"Data retrieval"},{"id":"6925473830595409991896469767149","path":"/knowledge-tree/conceitos/Databases/Information%20Retrieval/information-retrieval","label":"Information retrieval"},{"id":"39788157","path":"/knowledge-tree/conceitos/Databases/NoSQL/nosql","label":"Nosql"},{"id":"37245","path":"/knowledge-tree/conceitos/Databases/SQL/sql","label":"Sql"},{"id":"1422108377848304020","path":"/knowledge-tree/conceitos/Networks/Asynchronous/asynchronous","label":"Asynchronous"},{"id":"33773422613162","path":"/knowledge-tree/conceitos/Networks/Byzantine/byzantine","label":"Byzantine"},{"id":"1248953862480574","path":"/knowledge-tree/conceitos/Networks/CAP%20Theorem/cap-theorem","label":"Cap theorem"},{"id":"595361","path":"/knowledge-tree/conceitos/Networks/CRDT/crdt","label":"Crdt"},{"id":"20980633","path":"/knowledge-tree/conceitos/Networks/Chord/chord","label":"Chord"},{"id":"180758507946934573733853352570660","path":"/knowledge-tree/conceitos/Networks/Distributed%20Hash%20Tables/distributed-hash-tables","label":"Distributed hash tables"},{"id":"196617406559747521982777238352564","path":"/knowledge-tree/conceitos/Networks/Epidemic%20Broadcat%20Trees/epidemic-broadcat-trees","label":"Epidemic broadcat trees"},{"id":"118364582846116905859515843","path":"/knowledge-tree/conceitos/Networks/Event-driven%20Server/event-driven-server","label":"Event Driven server"},{"id":"100072086790617209837265","path":"/knowledge-tree/conceitos/Networks/Gangster%20Paradox/gangster-paradox","label":"Gangster paradox"},{"id":"1305755994574","path":"/knowledge-tree/conceitos/Networks/Gnutella/gnutella","label":"Gnutella"},{"id":"28147445","path":"/knowledge-tree/conceitos/Networks/Graph/graph","label":"Graph"},{"id":"5346763475629440007514921644","path":"/knowledge-tree/conceitos/Networks/Interval%20Tree%20Clocks/interval-tree-clocks","label":"Interval tree clocks"},{"id":"1589861734498","path":"/knowledge-tree/conceitos/Networks/Kademlia/kademlia","label":"Kademlia"},{"id":"132141122442877141061782","path":"/knowledge-tree/conceitos/Networks/Linearizability/linearizability","label":"Linearizability"},{"id":"6417667107358961591817717861","path":"/knowledge-tree/conceitos/Networks/Media%20Access%20Control/media-access-control","label":"Media access control"},{"id":"23476356606711367982773281694029108615542100","path":"/knowledge-tree/conceitos/Networks/Message%20Authentication%20Code%20(MAC)/message-authentication-code-mac","label":"Message authentication code (mac)"},{"id":"503179796958532336743230207621597515898","path":"/knowledge-tree/conceitos/Networks/Message%20Oriented%20Middleware/message-oriented-middleware","label":"Message oriented middleware"},{"id":"11266535818559391234661965445002205","path":"/knowledge-tree/conceitos/Networks/Network%20Time%20Protocol%20(NTP)/network-time-protocol-ntp","label":"Network time protocol (ntp)"},{"id":"44825854","path":"/knowledge-tree/conceitos/Networks/Qorum/qorum","label":"Qorum"},{"id":"35904","path":"/knowledge-tree/conceitos/Networks/RPC/rpc","label":"Rpc"},{"id":"136004183879632219828","path":"/knowledge-tree/conceitos/Networks/Spanning%20Trees/spanning-trees","label":"Spanning trees"},{"id":"105891339425632660","path":"/knowledge-tree/conceitos/Networks/Synchronous/synchronous","label":"Synchronous"},{"id":"38041","path":"/knowledge-tree/conceitos/Networks/TCP/tcp","label":"Tcp"},{"id":"64200629008","path":"/knowledge-tree/conceitos/Networks/Threads/threads","label":"Threads"},{"id":"39373","path":"/knowledge-tree/conceitos/Networks/UDP/udp","label":"Udp"},{"id":"4132761509213563564","path":"/knowledge-tree/conceitos/Networks/Vector%20Clocks/vector-clocks","label":"Vector clocks"},{"id":"27613844020","path":"/knowledge-tree/conceitos/Web/Cookies/cookies","label":"Cookies"},{"id":"10321053344592847707750121767318446802220","path":"/knowledge-tree/conceitos/Web/Cross-Origin%20Resource%20Sharing/cross-origin-resource-sharing","label":"Cross Origin resource sharing"},{"id":"221215993544965438794685914937440718","path":"/knowledge-tree/conceitos/Web/Cross-Site%20Request%20Forgery/cross-site-request-forgery","label":"Cross Site request forgery"},{"id":"3483726243430623321687796","path":"/knowledge-tree/conceitos/Web/Frames%20and%20iFrames/frames-and-iframes","label":"Frames and iframes"},{"id":"1397113493381","path":"/knowledge-tree/conceitos/Web/HTTP%20Auth/http-auth","label":"Http auth"},{"id":"6255301569195718647962674","path":"/knowledge-tree/conceitos/Web/Same-Origin%20Policy/same-origin-policy","label":"Same Origin policy"},{"id":"6280954365573304766971756","path":"/knowledge-tree/conceitos/Web/Session%20Hijacking/session-hijacking","label":"Session hijacking"},{"id":"43804","path":"/knowledge-tree/conceitos/Web/XSS/xss","label":"Xss"},{"id":"46378530244815725","path":"/knowledge-tree/index/index","label":"Content List"},{"id":"2402776049557","path":"/knowledge-tree/resumos/AC/1.1.%20Introdution/1-1-introdution","label":"Untitled"},{"id":"81676889533246026119639","path":"/knowledge-tree/resumos/AC/1.2.%20Data%20Preparation/1-2-data-preparation","label":"Data Preparation"},{"id":"105853271995781485577129644","path":"/knowledge-tree/resumos/AC/1.3.%20Data%20Understanding/1-3-data-understanding","label":"Data Understanding"},{"id":"391640284630317801447218589253556416661780951","path":"/knowledge-tree/resumos/AC/1.4.%20Advanced%20Topics%20-%20Data%20Preparation/1-4-advanced-topics-data-preparation","label":"Advanced Topics - Data Preparation"},{"id":"18206486889979855229696720616166476532701018412","path":"/knowledge-tree/resumos/AC/2.1.%20Descriptive%20Analytics%20+%20Clustering/2-1-descriptive-analytics-clustering","label":"Descriptive Analytics + Clustering"},{"id":"210690132241943189195520856119340","path":"/knowledge-tree/resumos/AC/2.2.%20Frequent%20Pattern%20Mining%20-%20Association%20Rules/2-2-frequent-pattern-mining-association-rules","label":"Frequent Pattern Mining"},{"id":"19548904114439035294623638491398769279229399","path":"/knowledge-tree/resumos/AC/3.1.%20Introduction%20to%20Classification/3-1-introduction-to-classification","label":"Introduction to Classification"},{"id":"7853092808745256997741119377796504708","path":"/knowledge-tree/resumos/AC/3.2.%20Classification%20Algorithms/3-2-classification-algorithms","label":"Classification ALgorithms"},{"id":"2782927863386519","path":"/knowledge-tree/resumos/AC/3.3.%20Regression/3-3-regression","label":"Regression"},{"id":"7850043983027514073448502100","path":"/knowledge-tree/resumos/AC/3.4.%20Introduction%20to%20Recommender%20Systems/3-4-introduction-to-recommender-systems","label":"Recommender Systems"},{"id":"3241122110819881232318764","path":"/knowledge-tree/resumos/AC/3.5.%20Ensemble%20Learning/3-5-ensemble-learning","label":"Ensemble Learning"},{"id":"5495051139013699250083799","path":"/knowledge-tree/resumos/AC/4.1.%20Outlier%20Detection/4-1-outlier-detection","label":"Outlier Detection"},{"id":"65443548425971875856684","path":"/knowledge-tree/resumos/AC/4.2.%20ANN%20+%20Introduction%20to%20Deep%20Learning/4-2-ann-introduction-to-deep-learning","label":"ANN + Deep Learning"},{"id":"6421157057681797349145782253","path":"/knowledge-tree/resumos/AC/4.3.%20Metalearning%20&%20AutoML/4-3-metalearning-automl","label":"Metalearning & AutoML"},{"id":"240589227765099673052794226274910629357","path":"/knowledge-tree/resumos/AC/AC/ac","label":"Aprendizagem Computacional"},{"id":"103841823815487875","path":"/knowledge-tree/resumos/FSI/1.%20Web/1-web","label":"Segurança Web"},{"id":"1680077656773453826","path":"/knowledge-tree/resumos/FSI/2.%20Criptografia/2-criptografia","label":"Criptografia"},{"id":"447698746565831359475675571306886394","path":"/knowledge-tree/resumos/FSI/3.%20PK%20Infrastructure/3-pk-infrastructure","label":"Public-Key Infrastructure"},{"id":"1851849395087745244631","path":"/knowledge-tree/resumos/FSI/4.%20Authentication/4-authentication","label":"Authentication"},{"id":"174414388749633151336036","path":"/knowledge-tree/resumos/FSI/5.%20Redes/5-redes","label":"Segurança de Redes"},{"id":"3896682460950866925","path":"/knowledge-tree/resumos/FSI/6.%20TLS/6-tls","label":"TLS and Signal"},{"id":"774714518649319842117578546054867522169132704794","path":"/knowledge-tree/resumos/FSI/FSI/fsi","label":"Fundamentos de Segurança Informática"},{"id":"71684638065172","path":"/knowledge-tree/resumos/FSI/Perguntas%20FSI/perguntas-fsi","label":"Perguntas"},{"id":"1632202199179734376687545757396595518803233444679072","path":"/knowledge-tree/resumos/PRI/PRI/pri","label":"Processamento e Recuperação de Informação"},{"id":"1385730979894442211642858409180597843489748945","path":"/knowledge-tree/resumos/SDLE/10.%20Quorum%20Consensus%20Replicated%20ADT/10-quorum-consensus-replicated-adt","label":"10. quorum consensus replicated adt"},{"id":"297117087099758275271869396","path":"/knowledge-tree/resumos/SDLE/11.%20Byzantine%20Quorums/11-byzantine-quorums","label":"11. byzantine quorums"},{"id":"2452250852148947176341154290704886726148708359198638","path":"/knowledge-tree/resumos/SDLE/12.%20Practical%20Byzantine%20Fault-Tolerance/12-practical-byzantine-fault-tolerance","label":"12. practical byzantine fault Tolerance"},{"id":"143768490085477247","path":"/knowledge-tree/resumos/SDLE/13.%20Blockchain/13-blockchain","label":"13. blockchain"},{"id":"2119742351888060458029509408534670102650","path":"/knowledge-tree/resumos/SDLE/2.%20Message%20Oriented%20Middleware/2-message-oriented-middleware","label":"2. message oriented middleware"},{"id":"49670930463710165929681420635052","path":"/knowledge-tree/resumos/SDLE/3.%20Processing%20and%20Scaling/3-processing-and-scaling","label":"3. processing and scaling"},{"id":"8377370676197544955211194395789671980339971808048","path":"/knowledge-tree/resumos/SDLE/4.%20Replication%20and%20Consistency%20Models/4-replication-and-consistency-models","label":"4. replication and consistency models"},{"id":"7856802203877937602475915419792883785110654260","path":"/knowledge-tree/resumos/SDLE/5.%20Scalable%20Distributed%20Topologies/5-scalable-distributed-topologies","label":"5. scalable distributed topologies"},{"id":"5500055021409855647479244329548649272482","path":"/knowledge-tree/resumos/SDLE/6.%20System%20Design%20for%20Large%20Scale/6-system-design-for-large-scale","label":"6. system design for large scale"},{"id":"133540821863415617892879786549633158","path":"/knowledge-tree/resumos/SDLE/7.%20Physical%20and%20Logical%20Time/7-physical-and-logical-time","label":"7. physical and logical time"},{"id":"1516445552606797852005007732405178305066454090157728370000968386","path":"/knowledge-tree/resumos/SDLE/8.%20High%20Availability%20under%20Eventual%20Consistency/8-high-availability-under-eventual-consistency","label":"8. high availability under eventual consistency"},{"id":"77564326098429129869107156","path":"/knowledge-tree/resumos/SDLE/9.%20Quorums%20Consensus/9-quorums-consensus","label":"9. quorums consensus"},{"id":"50183515407140165401415593961866212395148222461086","path":"/knowledge-tree/resumos/SDLE/SDLE/sdle","label":"Sistemas Distribuídos em Larga Escala"}]}
+    let nodesData = graphData.nodes;
+    let linksData = graphData.edges;
+
+    const nodeSize = {};
+
+    const updateNodeSize = () => {
+      nodesData.forEach((el) => {
+        let weight =
+          3 *
+          Math.sqrt(
+            linksData.filter((l) => l.source.id === el.id || l.target.id === el.id)
+              .length + 1
+          );
+        if (weight < MINIMAL_NODE_SIZE) {
+          weight = MINIMAL_NODE_SIZE;
+        } else if (weight > MAX_NODE_SIZE) {
+          weight = MAX_NODE_SIZE;
+        }
+        nodeSize[el.id] = weight;
+      });
+    };
+
+    const onClick = (d) => {
+      window.location = d.path
+    };
+
+    const onMouseover = function (d) {
+      const relatedNodesSet = new Set();
+      linksData
+        .filter((n) => n.target.id == d.id || n.source.id == d.id)
+        .forEach((n) => {
+          relatedNodesSet.add(n.target.id);
+          relatedNodesSet.add(n.source.id);
+        });
+
+      node.attr("class", (node_d) => {
+        if (node_d.id !== d.id && !relatedNodesSet.has(node_d.id)) {
+          return "inactive";
+        }
+        return "";
+      });
+
+      link.attr("class", (link_d) => {
+        if (link_d.source.id !== d.id && link_d.target.id !== d.id) {
+          return "inactive";
+        }
+        return "";
+      });
+
+      link.attr("stroke-width", (link_d) => {
+        if (link_d.source.id === d.id || link_d.target.id === d.id) {
+          return STROKE * 4;
+        }
+        return STROKE;
+      });
+      text.attr("class", (text_d) => {
+        if (text_d.id !== d.id && !relatedNodesSet.has(text_d.id)) {
+          return "inactive";
+        }
+        return "";
+      });
+    };
+
+    const onMouseout = function (d) {
+      node.attr("class", "");
+      link.attr("class", "");
+      text.attr("class", "");
+      link.attr("stroke-width", STROKE);
+    };
+
+    const sameNodes = (previous, next) => {
+      if (next.length !== previous.length) {
+        return false;
+      }
+
+      const map = new Map();
+      for (const node of previous) {
+        map.set(node.id, node.label);
+      }
+
+      for (const node of next) {
+        const found = map.get(node.id);
+        if (!found || found !== node.title) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const sameEdges = (previous, next) => {
+      if (next.length !== previous.length) {
+        return false;
+      }
+
+      const set = new Set();
+      for (const edge of previous) {
+        set.add(`${edge.source.id}-${edge.target.id}`);
+      }
+
+      for (const edge of next) {
+        if (!set.has(`${edge.source.id}-${edge.target.id}`)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const graphWrapper = document.getElementById('graph-wrapper')
+    const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    element.setAttribute("width", graphWrapper.getBoundingClientRect().width);
+    element.setAttribute("height", window.innerHeight * 0.8);
+    graphWrapper.appendChild(element);
+
+    const reportWindowSize = () => {
+      element.setAttribute("width", window.innerWidth);
+      element.setAttribute("height", window.innerHeight);
+    };
+
+    window.onresize = reportWindowSize;
+
+    const svg = d3.select("svg");
+    const width = Number(svg.attr("width"));
+    const height = Number(svg.attr("height"));
+    let zoomLevel = 1;
+
+    const simulation = d3
+      .forceSimulation(nodesData)
+      .force("forceX", d3.forceX().x(width / 2))
+      .force("forceY", d3.forceY().y(height / 2))
+      .force("charge", d3.forceManyBody())
+      .force(
+        "link",
+        d3
+          .forceLink(linksData)
+          .id((d) => d.id)
+          .distance(70)
+      )
+      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("collision", d3.forceCollide().radius(80))
+      .stop();
+
+    const g = svg.append("g");
+    let link = g.append("g").attr("class", "links").selectAll(".link");
+    let node = g.append("g").attr("class", "nodes").selectAll(".node");
+    let text = g.append("g").attr("class", "text").selectAll(".text");
+
+    const resize = () => {
+      if (d3.event) {
+        const scale = d3.event.transform;
+        zoomLevel = scale.k;
+        g.attr("transform", scale);
+      }
+
+      const zoomOrKeep = (value) => (zoomLevel >= 1 ? value / zoomLevel : value);
+
+      const font = Math.max(Math.round(zoomOrKeep(FONT_SIZE)), 1);
+
+      text.attr("font-size", (d) => font);
+      text.attr("y", (d) => d.y - zoomOrKeep(FONT_BASELINE) + 8);
+      link.attr("stroke-width", zoomOrKeep(STROKE));
+      node.attr("r", (d) => {
+        return zoomOrKeep(nodeSize[d.id]);
+      });
+      svg
+        .selectAll("circle")
+        .filter((_d, i, nodes) => d3.select(nodes[i]).attr("active"))
+        .attr("r", (d) => zoomOrKeep(ACTIVE_RADIUS_FACTOR * nodeSize[d.id]));
+    };
+
+    const ticked = () => {
+      node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      text
+        .attr("x", (d) => d.x)
+        .attr("y", (d) => d.y - (FONT_BASELINE - nodeSize[d.id]) / zoomLevel);
+      link
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
+    };
+
+    const restart = () => {
+      updateNodeSize();
+      node = node.data(nodesData, (d) => d.id);
+      node.exit().remove();
+      node = node
+        .enter()
+        .append("circle")
+        .attr("r", (d) => {
+          return nodeSize[d.id];
+        })
+        .on("click", onClick)
+        .on("mouseover", onMouseover)
+        .on("mouseout", onMouseout)
+        .merge(node);
+
+      link = link.data(linksData, (d) => `${d.source.id}-${d.target.id}`);
+      link.exit().remove();
+      link = link.enter().append("line").attr("stroke-width", STROKE).merge(link);
+
+      text = text.data(nodesData, (d) => d.label);
+      text.exit().remove();
+      text = text
+        .enter()
+        .append("text")
+        .text((d) => shorten(d.label.replace(/_*/g, ""), MAX_LABEL_LENGTH))
+        .attr("font-size", `${FONT_SIZE}px`)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "central")
+        .on("click", onClick)
+        .on("mouseover", onMouseover)
+        .on("mouseout", onMouseout)
+        .merge(text);
+
+      node.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+      text.attr("active", (d) => isCurrentPath(d.path) ? true : null);
+
+      simulation.nodes(nodesData);
+      simulation.force("link").links(linksData);
+      simulation.alpha(1).restart();
+      simulation.stop();
+
+      for (let i = 0; i < TICKS; i++) {
+        simulation.tick();
+      }
+
+      ticked();
+    };
+
+    const zoomHandler = d3.zoom().scaleExtent([0.2, 3]).on("zoom", resize);
+
+    zoomHandler(svg);
+    restart();
+
+    function isCurrentPath(notePath) {
+      return window.location.pathname.includes(notePath)
+    }
+
+    function shorten(str, maxLen, separator = ' ') {
+      if (str.length <= maxLen) return str;
+      return str.substr(0, str.lastIndexOf(separator, maxLen)) + '...';
+    }
+  </script>
+</div>
+
+      </div>
+    </side>
+  </div>
+</article>
+    </main>
+
+    <footer>
+      <p style="text-align: center;">Wow, you just found a wild footer!</p>
+
+    </footer>
+  </body>
+</html>
