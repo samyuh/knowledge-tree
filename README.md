@@ -22,12 +22,12 @@ Feita utilizando `Jekyll`, com o `digital-garden-jekyll-template`.
     </td>
     <td align="center">
         <a href="https://github.com/jumaruba">
-        <img src="#" width="100px;" alt=""/><br />
-        <sub><b></b></sub></a>
+        <img src="https://avatars.githubusercontent.com/u/33182421?s=400&u=7060ef03d9d4ea9358a08292863636edb639cdac&v=4" width="100px;" alt=""/><br />
+        <sub><b>Juliane Marubayashi</b></sub></a>
     </td>
     <td align="center">
         <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/33182421?s=400&u=7060ef03d9d4ea9358a08292863636edb639cdac&v=4" width="100px;" alt=""/><br />
+        <img src="" width="100px;" alt=""/><br />
         <sub><b></b></sub></a>
     </td>
     <td align="center">
